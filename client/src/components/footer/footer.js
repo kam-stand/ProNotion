@@ -1,9 +1,8 @@
-import logo from "../../images/notion.png"
-
-export default function Header(){
+import logo from "../../images/notion2.png"
+export default function Footer(){
     return(
         <>
-        <div className ="header">
+        <div className ="footer">
             <div className="logo">
                 <img
                 alt="logo"
@@ -13,13 +12,14 @@ export default function Header(){
             </div>
             <nav className="navigation">
             <ul>
-                <li>Home</li>
-                <li>About us</li>
-                <li>Tasks</li>
-                <li>Calendar</li>
+                <li>Purchase</li>
+                <li>Address</li>
+                <li>Contact</li>
             </ul>
             </nav>
         </div>
+        
+        
         </>
-    );
+    )
 }

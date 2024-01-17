@@ -1,91 +1,94 @@
-
-.header{
+.header {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-
+  justify-content: space-between;
+  height: fit-content;
 }
 
-.header-nav ul{
-  list-style-type: none;
+.logo {
+  flex-shrink: 0; /* Prevents the logo from shrinking */
+}
+
+.logo img.notion {
+  height: 120px; /* Adjust as needed */
+  width: auto;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+}
+
+.navigation ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.navigation ul li {
+  margin-left: 20px; /* Space between menu items */
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .logo {
+  flex-shrink: 0;
+}
+
+.footer .logo img.notion2 {
+  height: 140px; /* Adjust the size of the logo as needed */
+  width: auto;
+}
+
+.footer .navigation {
+  display: flex;
+  align-items: center;
+}
+
+.footer .navigation ul {
+  list-style: none;
+  display: flex;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .navigation ul li {
+  margin-left: 20px; /* Space between menu items */
+}
+
+.pricing{
+  border: 2px solid black;
+  border-radius: 5px;
+  width: fit-content;
+  height: fit-content;
+  box-shadow: 5px 10px;
+
+}
+.wrapper-pricing{
   display: flex;
   justify-content: space-evenly;
-  flex-direction: row;
+}
+
+.price-list{
+  margin: 10px;
+  padding: auto;
   text-align: center;
- 
-}
-.header-nav li{
-  margin: 10px;
-  padding: 5px;
-  color: white;
-  font-family: 'Courier New', Courier, monospace;
-  border: 2px solid white;
-}
-.header-nav li:hover{
-  color: blueviolet;
-  font-weight: bold;
-  cursor:pointer;
-  background-color:white ;
-}
-body{
-  margin: 0;
-  background-image: url("https://static.vecteezy.com/system/resources/previews/028/829/708/non_2x/nebula-galaxy-background-with-purple-blue-outer-space-cosmos-clouds-and-beautiful-universe-night-stars-ai-generative-free-photo.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  color: white;
-}
-.main-header{
-  font-family:'Courier New', Courier, monospace;
-  font-size: 100px;
-  margin: 20px;
-  padding: 20px;
-  animation: slide-in 3s ease-out forwards; /* Adjust timing and easing as needed */
 }
 
-@keyframes slide-in {
-  from {
-    transform: translateX(-100%); /* Starts off-screen to the left */
-    opacity: 0; /* Starts out invisible */
-
-  }
-
-  to {
-    transform: translateX(0); /* Ends at its original position */
-    opacity: 1; /* Fully visible */
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
-
-  }
-}
-.task-wrapper{
-  border: 2px solid white;
-  height: fit-content;
-  width: fit-content;
-  align-items: center;
-}
-.task{
-  margin: 10px;
-  padding: 10px;
-  text-align: center;
-  font-family: 'Courier New', Courier, monospace;
-}
-.checkbox{
-  height:20px;
-  width: 20px;
-  border: solid 2px white;
-  margin: 10px;
-  padding: 10px;
-}
-.checkbox:hover{
-  background-color: blueviolet;
+.plan{
+  background-color: gainsboro;
 }
 
-.task-list{
+.product img {
+  height: 140px; /* Adjust the size of the logo as needed */
+  width: auto;
+}
+.prduct{
   display: flex;
-  flex-direction: row;
-  margin: 5px;
-  align-items: center;
-  
-  
+  justify-content: space-evenly;
 }

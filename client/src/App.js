@@ -1,12 +1,15 @@
 import './App.css';
+import Main from './components/Main_content/main';
+import Footer from './components/footer/footer';
 import Header from './components/header/header';
-import Main from './components/homepage/main';
+
 
 function App() {
   return (
    <>
    <Header/>
    <Main/>
+   <Footer/>
    </>
   );
 }
