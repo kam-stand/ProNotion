@@ -1,0 +1,27 @@
+.Header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2p solid black;
+}
+.logo{
+    position: left;
+}
+.Header_nav{
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+
+}
+.Header_nav_item{
+    margin: 10px;
+    padding: 10px;
+}
+
+.Header_nav_item a{
+    color: black;
+    text-decoration: none;
+}
