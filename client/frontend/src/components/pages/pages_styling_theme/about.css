@@ -1,49 +1,23 @@
-.About{
-   display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+.Parent{
     align-items: center;
-    padding: 10px 20px;
-    margin-top: 20px;
-    margin-right: 40px;
-    margin-left: 40px;
-}
-.title{
-    display: inline;
-    float: left;
-    margin: 10px;
-    padding: 10px;
-
-}
-.title h1{
-    font-size: x-large;
-    color: #000000;
-    font: bold;
-}
-.title h2{
-    font-size: large;
-    color:#A4B0A5;
-    font-style: italic;
-}
-
-.image{
-    display: inline;
-    float: right;
-    margin: 10px;
-    padding: 10px;
-    height: 100px;
-
-}
-.parent{
     display: flex;
-    flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    padding: 10px 20px;
-    margin-top: 20px;
-    margin-right: 40px;
-    margin-left: 40px;
+    align-content: center;
+
 }
-.image img{
-    border-radius: 5%;
+.card{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.card div{
+    margin: 5px;
+    padding: auto;
+}
+.card p{
+    text-wrap: wrap;
+}
+.Parent :last-child{
+    margin-top: 20px;
 }
