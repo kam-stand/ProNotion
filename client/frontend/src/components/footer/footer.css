@@ -9,7 +9,11 @@
     margin-left: 40px;
     padding: 10px 20px;
     border-top: solid 1px black;
-    background-color: #f0f0f0;
+    background-color: #FEF9F3;
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
 
 }
 .Footer_logo{
@@ -34,8 +38,8 @@
     font-size: medium;
 }
 .Footer_nav_item a:hover{
-    background-color: grey;
+    background-color: #D2D3C9;
     border-radius: 5px;
-    color: black;
+    color: white;
     text-decoration: none;
 }

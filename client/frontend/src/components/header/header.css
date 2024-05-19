@@ -10,7 +10,8 @@
     margin-right: 40px;
     margin-left: 40px;
     border-bottom: solid 1px black;
-    background-color: #f0f0f0;
+    background-color: #FEF9F3;
+
 
 
 }
@@ -38,9 +39,9 @@
     text-decoration: none;
 }
 .Header_nav_item a:hover{
-    background-color: grey;
+    background-color: #D2D3C9;
     border-radius: 5px;
-    color: black;
+    color: white;
     text-decoration: none;
 }
 .Header_nav_item a{
