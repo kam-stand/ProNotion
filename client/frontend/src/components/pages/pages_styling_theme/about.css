@@ -1,23 +1,61 @@
-.Parent{
-    align-items: center;
+.Layout {
+    margin-right: 40px;
+    margin-left: 40px;
+    padding: 10px 20px;
+    position: relative;
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
     align-items: center;
     align-content: center;
+   
+    
+}
+
+.TopRow {
+    display: flex;
+    width: 100%; /* Ensures the top row takes full width of the container */
+    justify-content: space-between; /* Spaces the left and right boxes */
+}
+
+.Leftbox, .Rightbox {
+    margin: 10px;
+    padding: 10px;
+    width: calc(50% - 40px); /* Adjusted width to account for margins */
+}
+.Leftbox h1{
+    font-size: 70px;
+    text-align: left;
 
 }
-.card{
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
+.Leftbox h2{
+    font-size: 40px;
+    text-align: left;
 }
-.card div{
-    margin: 5px;
-    padding: auto;
+
+.Rightbox img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15%;
 }
-.card p{
+.Leftbox div p{
     text-wrap: wrap;
+    font-size: 20px;
 }
-.Parent :last-child{
-    margin-top: 20px;
+.Bottombox {
+    margin: 10px;
+    padding: 10px;
+    width: calc(100% - 60px); /* Adjusted width to account for padding and margins */
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Centers the content vertically */
+    align-content: center;
+}
+
+.Bottombox img {
+    width: 40%;
+    display: block;
+    border-radius: 15%;
+    background-color: #FEF9F3
+    ;
 }
