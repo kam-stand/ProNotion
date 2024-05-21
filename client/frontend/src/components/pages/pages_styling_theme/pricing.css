@@ -13,6 +13,15 @@
     margin-top: 10px;
     margin-bottom: 10px;   
 }
+.pricing .card{
+    border : 1px solid #000;
+    margin: 10px;
+    height: 150px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .testimonial{
     display: flex;
@@ -41,15 +50,18 @@
 }
 
 .payments .card{
-    border : 1px solid #000;
+    
     margin: 10px;
     height: 50px;
     width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }
 .card {
-    border : 1px solid #000;
     margin: 10px;
     height: 150px;
     width: 300px;
+    
 }
