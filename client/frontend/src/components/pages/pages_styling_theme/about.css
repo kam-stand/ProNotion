@@ -20,42 +20,41 @@
 .Leftbox, .Rightbox {
     margin: 10px;
     padding: 10px;
-    width: calc(50% - 40px); /* Adjusted width to account for margins */
+    /* width: calc(50% - 40px); */
+     /* Adjusted width to account for margins */
+     width: 60%;
 }
 .Leftbox h1{
-    font-size: 70px;
+    font-size: 40px;
     text-align: left;
 
 }
 .Leftbox h2{
-    font-size: 40px;
+    font-size: 20px;
     text-align: left;
 }
-
+.Rightbox div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
 .Rightbox img {
-    width: 100%;
+    width: 60%;
     height: auto;
     display: block;
     border-radius: 15%;
+    align-content: center;
 }
 .Leftbox div p{
     text-wrap: wrap;
     font-size: 20px;
 }
-.Bottombox {
-    margin: 10px;
-    padding: 10px;
-    width: calc(100% - 60px); /* Adjusted width to account for padding and margins */
-    display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically */
-    align-content: center;
-}
 
-.Bottombox img {
-    width: 40%;
+.ProNotionLogo{
+    width: 35%;
+    height: auto;
     display: block;
     border-radius: 15%;
-    background-color: #FEF9F3
-    ;
+    align-content: center;
 }

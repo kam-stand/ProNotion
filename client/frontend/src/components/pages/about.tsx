@@ -23,7 +23,7 @@ export default function About() {
               unde numquam voluptatum aliquid maxime veniam commodi pariatur.
               Repudiandae sunt ratione illo aut laboriosam suscipit?
             </p>
-            <br></br>
+            {/* <br></br>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse
               nobis quaerat saepe soluta eaque quas odio, deleniti aliquid
@@ -44,21 +44,20 @@ export default function About() {
               ducimus accusantium aspernatur eius mollitia rerum consequuntur
               adipisci natus nobis porro doloremque maiores vero deleniti et
               consequatur!
-            </p>
+            </p> */}
           </div>
         </div>
         <div className="Rightbox">
-          <img
-            src="https://images.pexels.com/photos/4065891/pexels-photo-4065891.jpeg?cs=srgb&dl=pexels-cottonbro-4065891.jpg&fm=jpg"
-            alt="About"
-            className="AboutImage"
-          />
+          <div>
+            <img
+              src="https://images.pexels.com/photos/4065891/pexels-photo-4065891.jpeg?cs=srgb&dl=pexels-cottonbro-4065891.jpg&fm=jpg"
+              alt="About"
+              className="AboutImage"
+            />
+          </div>
         </div>
       </div>
-
-      <div className="Bottombox">
-        <img src={logo} alt="ProNotion Logo" className="ProNotionLogo" />
-      </div>
+      <img src={logo} alt="ProNotion Logo" className="ProNotionLogo" />
     </div>
   );
 }
