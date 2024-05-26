@@ -1,46 +1,52 @@
-.Parent{
+.Parent {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: column;
     margin: 10px;
 }
-.pricing{
+
+
+.pricing {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     margin-top: 10px;
-    margin-bottom: 10px;   
+    margin-bottom: 70px;
 }
-.pricing .card{
-    border : 1px solid #000;
-    margin: 10px;
-    height: 150px;
+
+.pricing .card {
+    margin: 60px;
+    height: 300px;
+    /* Ensure all cards have the same height */
     width: 300px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    /* Align children vertically */
 }
 
-.testimonial{
+.testimonial {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     margin-top: 20px;
     margin-bottom: 5px;
+    width: max-content;
 }
 
-.testimonial .card{
-    border : 1px solid #000;
+.testimonial .card {
+    border: 1px solid #000;
     margin: 10px;
     height: 150px;
     width: 100px;
-
+    align-content: center;
 }
 
-.payments{
+.payments {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -49,19 +55,136 @@
     margin-bottom: 20px;
 }
 
-.payments .card{
-    
+.payments .card {
     margin: 10px;
-    height: 50px;
+    height: 150px;
     width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
-.card {
+
+.card .price-context {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10%;
+    width: 480;
+    /* Use full width of the card */
+    height: 250px;
+    /* Use full height of the card */
+    box-sizing: border-box;
+    /* Include padding and border in element's total width and height */
+    background-color: #D2D3C9;
+}
+
+.price-context {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.price-context h1 {
+    font-size: 30px;
+    color: #4D6B70;
+    transition: color 0.5s;
+}
+
+.price-context h1:hover {
+    animation: rainbow 2s infinite;
+}
+
+@keyframes rainbow {
+    0% {
+        color: #FEF9F3;
+    }
+
+    14% {
+        color: #D2D3C9;
+    }
+
+    28% {
+        color: #A4B0A5;
+    }
+
+    42% {
+        color: #768D88;
+    }
+
+    57% {
+        color: #4D6B70;
+    }
+
+    71% {
+        color: #2F4858;
+    }
+
+    85% {
+        color: #FEF9F3;
+    }
+
+    100% {
+        color: #FEF9F3;
+    }
+}
+
+.price-context h1,
+.price-context h2 {
+    margin: 10px 0;
+    /* Ensure consistent spacing */
+}
+
+.price-context div ol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.price-context div ol ul {
+    padding: 5px 0;
+}
+
+.button {
+    transition-duration: 0.4s;
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
     margin: 10px;
-    height: 150px;
-    width: 300px;
-    
+    border-radius: 5%;
+}
+
+.button:hover {
+    background-color: #4D6B70;
+    /* Green */
+    color: black;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.info div {
+    align-content: center;
+}
+
+.img {
+    width: 98vw;
+    /* Set width to 100% of viewport width */
+    margin-right: 20px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
