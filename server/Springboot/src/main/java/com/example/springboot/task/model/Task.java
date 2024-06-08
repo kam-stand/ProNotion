@@ -20,10 +20,9 @@ public class Task {
     private String Body;
     private Date CreateDate;
     private Date dueDate;
-    @Id
-    private User createdBy;
-    private String [] tags;
-    public List<User> assignees;
+//    private User createdBy;
+//    private String [] tags;
+//    public List<User> assignees;
 
     public Task(){
         // empty constructor
@@ -33,8 +32,7 @@ public class Task {
         this.Title = title;
         this.Description = body;
         this.dueDate = dueDate;
-        this.createdBy = createdBy;
-        this.tags = tags;
+
 
     }
 
