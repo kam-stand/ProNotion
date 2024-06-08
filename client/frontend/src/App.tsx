@@ -1,14 +1,21 @@
 import "./App.css";
-import Footer from "./components/footer/footer";
-import Header from "./components/header/header";
+
 import Pricing from "./components/pages/pricing";
+import About from "./components/pages/about";
+import Landing from "./components/pages/landing";
+import Home from "./components/pages/home";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
-    <>
-      <Header />
-      <Pricing />
-      <Footer />
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/landing" element={<Landing />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

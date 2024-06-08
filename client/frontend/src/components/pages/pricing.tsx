@@ -2,10 +2,15 @@ import "./pages_styling_theme/pricing.css";
 import { FaCcPaypal } from "react-icons/fa6";
 import { FaCcVisa } from "react-icons/fa6";
 import { FaCcMastercard } from "react-icons/fa6";
-
+import { FaUserAstronaut } from "react-icons/fa6";
+import { FaUserSecret } from "react-icons/fa6";
+import { PiUsersThree } from "react-icons/pi";
+import Header from "../header/header";
+import Footer from "../footer/footer";
 export default function Pricing() {
   return (
     <>
+      <Header />
       <div className="Parent">
         <div className="header">
           <h1>Pricing</h1>
@@ -16,13 +21,15 @@ export default function Pricing() {
               <h1>Basic</h1>
               <h2>$10/month</h2>
               <div className="info">
-                <p>5 users included</p>
+                <p>1 user</p>
                 <div>
                   <ol>
-                    <ul>basic feature</ul>
-                    <ul>not included feature</ul>
-                    <ul>not included feature</ul>
-                    <ul>not included feature</ul>
+                    <ul>Read and organize emails</ul>
+                    <ul>Create tasks</ul>
+                    <ul>Automation and rules</ul>
+                    <ul>
+                      3 project <b>resources</b>
+                    </ul>
                   </ol>
                 </div>
               </div>
@@ -34,13 +41,15 @@ export default function Pricing() {
               <h1>Professional</h1>
               <h2>$20/month</h2>
               <div className="info">
-                <p>5 users included</p>
+                <p>up to 5 teams members</p>
                 <div>
                   <ol>
-                    <ul>Professional feature</ul>
-                    <ul>Professional feature</ul>
-                    <ul>Professional feature</ul>
-                    <ul>Professional feature</ul>
+                    <ul>Assign task</ul>
+                    <ul>Track projects</ul>
+                    <ul>Filter and label emails</ul>
+                    <ul>
+                      Organize with <b>ProNotion Calendar</b>
+                    </ul>
                   </ol>
                 </div>
               </div>
@@ -55,10 +64,16 @@ export default function Pricing() {
                 <p>100+ users included</p>
                 <div>
                   <ol>
-                    <ul>Enterprise feature</ul>
-                    <ul>Enterprise feature</ul>
-                    <ul>Enterprise feature</ul>
-                    <ul>Enterprise feature</ul>
+                    <ul>Reminders</ul>
+                    <ul>
+                      <b>CRM</b> tracking
+                    </ul>
+                    <ul>
+                      <b>Automated</b> response templates
+                    </ul>
+                    <ul>
+                      <b>ProNotion</b> Chrome Extension
+                    </ul>
                   </ol>
                 </div>
               </div>
@@ -68,9 +83,31 @@ export default function Pricing() {
         </div>
         <h2>Testimonial</h2>
         <div className="testimonial">
-          <div className="card">1</div>
-          <div className="card">2</div>
-          <div className="card">3</div>
+          <div className="card">
+            <FaUserAstronaut size="100px" />
+          </div>
+          <div className="response">
+            <h3>Awesome tool. Keeps me close to my customers.</h3>
+          </div>
+
+          <div className="card">
+            <FaUserSecret size="100px" />
+          </div>
+          <div className="response">
+            <h3>
+              <b>Productive. Efficient. Easy.</b>
+            </h3>
+          </div>
+
+          <div className="card">
+            <PiUsersThree size="100px" />
+          </div>
+          <div className="response">
+            <h3>
+              My teams is <b>organized</b> and much more aligned thanks to
+              ProNotion.
+            </h3>
+          </div>
         </div>
         <h3>Payments</h3>
         <div className="payments">
@@ -87,18 +124,19 @@ export default function Pricing() {
       </div>
       <div className="img">
         <img
-          height="210px"
+          height="150px"
           alt="img1"
           width="fit-content"
           src="https://images.thdstatic.com/productImages/d876ff26-5e8e-4585-98e5-9e50c621f25f/svn/black-wall-sculptures-wa1748w-64_600.jpg"
         />
         <img
           alt="img2"
-          height="200px"
+          height="170px"
           width="fit-content"
           src="https://img.fruugo.com/product/7/87/969719877_max.jpg"
         />
       </div>
+      <Footer />
     </>
   );
 }

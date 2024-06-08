@@ -29,6 +29,9 @@
 }
 
 .testimonial {
+    border: 1px solid  #2F4858;
+border-radius: 20px;
+background-color:#A4B0A5;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -39,11 +42,16 @@
 }
 
 .testimonial .card {
-    border: 1px solid #000;
-    margin: 10px;
+    margin: 30px;
     height: 150px;
     width: 100px;
     align-content: center;
+    display: flex;
+}
+.testimonial .card  :hover {
+    background-color: #D2D3C9;
+    border-radius: 10px;
+    cursor: pointer;
 }
 
 .payments {
@@ -158,6 +166,8 @@
     font-size: 16px;
     margin: 10px;
     border-radius: 5%;
+    /* the cursor should be a points */
+    cursor: pointer;
 }
 
 .button:hover {
@@ -179,12 +189,20 @@
     align-content: center;
 }
 
+
+
 .img {
-    width: 98vw;
-    /* Set width to 100% of viewport width */
-    margin-right: 20px;
-    margin-left: 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+  }
+  
+  .response{
+    background-color: smokegray;
+    opacity: 0.6;
+    border-radius: 10%;
+ 
+  }
+  .response h3{
+    text-wrap:wrap;
+
 }
