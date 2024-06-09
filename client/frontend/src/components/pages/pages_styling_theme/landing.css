@@ -1,0 +1,62 @@
+.landing{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.content{
+    margin: 10px;
+}
+
+
+.content .pictures{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+    flex-direction: row ;
+}
+.content .pictures :hover{
+    transform: scale(1.1);
+    transition: 0.5s;
+    cursor: pointer;
+}
+.content .pictures div{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    margin: 20px 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+
+}
+
+.content .pictures  div .react-icon{
+    border: none;
+}
+
+@keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .content .pictures div  {
+    animation: float 3s ease-in-out infinite;
+  }
+
+    .content .pictures div:hover{
+        animation: none;
+    }
