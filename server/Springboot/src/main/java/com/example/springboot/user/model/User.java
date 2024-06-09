@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.Date;
 
+import com.example.springboot.task.model.Task;
+import java.util.List;
+
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long user_ID;
-
 
     private String username;
     private String password;
@@ -22,10 +24,18 @@ public class User {
 
     private Date created_at;
     private Date updated_at;
-    public User () {
+
+    @OneToMany(mappedBy = "owned_by")
+    private List<Task> tasks;
+
+    @ManyToMany(mappedBy = "assigned_to")
+    private List<Task> assigned_tasks;
+
+    public User() {
         // No argument constructor
     }
-  public User(String username, String password, String email, String phone, String name) {
+
+    public User(String username, String password, String email, String phone, String name) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -33,7 +43,8 @@ public class User {
         this.name = name;
         this.created_at = Date.from(Instant.now());
 
-  }
+    }
+
     public Date getCreated_at() {
         return created_at;
     }
@@ -41,8 +52,6 @@ public class User {
     public void setCreated_at(Date created_at) {
         this.created_at = created_at;
     }
-
-
 
     public String getUsername() {
         return username;
