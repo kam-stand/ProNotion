@@ -1,6 +1,7 @@
 package com.example.springboot.task.model;
 
 import jakarta.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class Task {
         this.dueDate = dueDate;
     }
 
-    public Task(String body, User owned_by, Date dueDate) {
+    public Task(String body, User owned_by, Date dueDate, String url) {
         this.body = body;
         this.owned_by = owned_by;
         this.dueDate = dueDate;

@@ -8,6 +8,11 @@ import java.util.Date;
 import com.example.springboot.task.model.Task;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
+import com.example.springboot.roles.Role;
+import com.example.springboot.roles.Membership;
+
 @Entity
 public class User {
     @Id
@@ -18,12 +23,16 @@ public class User {
     private String password;
     private String email;
     private String phone;
-
     private String name;
     private String teamName;
 
     private Date created_at;
     private Date updated_at;
+
+    @Value("USER")
+    private Role role;
+    @Value("BASIC")
+    private Membership membership;
 
     @OneToMany(mappedBy = "owned_by")
     private List<Task> tasks;
@@ -116,4 +125,21 @@ public class User {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public Membership getMembership() {
+        return membership;
+    }
+
+    public void setMembership(Membership membership) {
+        this.membership = membership;
+    }
+
 }
