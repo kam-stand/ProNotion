@@ -2,7 +2,6 @@ package com.example.springboot.user.model;
 
 import jakarta.persistence.*;
 
-import java.time.Instant;
 import java.util.Date;
 
 import com.example.springboot.task.model.Task;
@@ -14,24 +13,39 @@ import com.example.springboot.roles.Role;
 import com.example.springboot.roles.Membership;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long user_ID;
 
+    @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
     private String password;
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(unique = false, nullable = false)
     private String phone;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = true)
     private String teamName;
 
+    @Column(nullable = false)
+    @Value("CURRENT_TIMESTAMP")
     private Date created_at;
+    @Column(nullable = true)
     private Date updated_at;
 
     @Value("USER")
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Enumerated(EnumType.STRING)
     private Role role;
+
     @Value("BASIC")
+    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Enumerated(EnumType.STRING)
     private Membership membership;
 
     @OneToMany(mappedBy = "owned_by")
@@ -44,14 +58,22 @@ public class User {
         // No argument constructor
     }
 
-    public User(String username, String password, String email, String phone, String name) {
+    // constructor
+    public User(String username, String password, String email, String phone, String name, String teamName,
+            Date created_at, Date updated_at, Role role, Membership membership, List<Task> tasks,
+            List<Task> assigned_tasks) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.phone = phone;
         this.name = name;
-        this.created_at = Date.from(Instant.now());
-
+        this.teamName = teamName;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+        this.role = role;
+        this.membership = membership;
+        this.tasks = tasks;
+        this.assigned_tasks = assigned_tasks;
     }
 
     public Date getCreated_at() {

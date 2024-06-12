@@ -5,40 +5,43 @@ import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+import com.example.springboot.tags.model.Tags;
 import com.example.springboot.user.model.User;
 
 @Entity
+@Table(name = "tasks")
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long task_Id;
 
+    @Column(nullable = false, columnDefinition = "TEXT")
+    @Lob
     private String body;
-    private String[] tags;
+
+    @Column(nullable = true, columnDefinition = "DATE")
     private Date dueDate;
 
+    @OneToMany(mappedBy = "tag_id")
+    private List<Tags> tags;
+
     @ManyToOne
-    @JoinColumn(name = "owner_id", nullable = false)
+    @JoinColumn(name = "user_ID")
     private User owned_by;
 
     @ManyToMany
-    @JoinTable(name = "task_assigned_users", joinColumns = @JoinColumn(name = "task_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    @JoinTable(name = "task_user", joinColumns = @JoinColumn(name = "task_Id"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
     private List<User> assigned_to;
 
     public Task() {
     }
 
-    public Task(String body, String[] tags, User owned_by, List<User> assigned_to, Date dueDate) {
+    // Constructor
+    public Task(String body, List<Tags> tags, User owned_by, List<User> assigned_to, Date dueDate) {
         this.body = body;
         this.tags = tags;
         this.owned_by = owned_by;
         this.assigned_to = assigned_to;
-        this.dueDate = dueDate;
-    }
-
-    public Task(String body, User owned_by, Date dueDate, String url) {
-        this.body = body;
-        this.owned_by = owned_by;
         this.dueDate = dueDate;
     }
 
@@ -60,11 +63,11 @@ public class Task {
         this.body = body;
     }
 
-    public String[] getTags() {
+    public List<Tags> getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(List<Tags> tags) {
         this.tags = tags;
     }
 
