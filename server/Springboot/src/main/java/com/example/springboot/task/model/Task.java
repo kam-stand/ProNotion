@@ -2,8 +2,11 @@ package com.example.springboot.task.model;
 
 import jakarta.persistence.*;
 
+import java.net.URL;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
 
 import com.example.springboot.tags.model.Tags;
 import com.example.springboot.user.model.User;
@@ -32,6 +35,10 @@ public class Task {
     @ManyToMany
     @JoinTable(name = "task_user", joinColumns = @JoinColumn(name = "task_Id"), inverseJoinColumns = @JoinColumn(name = "user_ID"))
     private List<User> assigned_to;
+
+    @Column(nullable = true, columnDefinition = "TEXT")
+    @Value("null")
+    private URL url;
 
     public Task() {
     }
