@@ -22,11 +22,12 @@ public class Task {
     @Lob
     private String body;
 
+    @ManyToMany
+    @JoinTable(name = "task_tags", joinColumns = @JoinColumn(name = "task_Id"), inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tags> tags;
+
     @Column(nullable = true, columnDefinition = "DATE")
     private Date dueDate;
-
-    @OneToMany(mappedBy = "tag_id")
-    private List<Tags> tags;
 
     @ManyToOne
     @JoinColumn(name = "user_ID")
@@ -44,9 +45,8 @@ public class Task {
     }
 
     // Constructor
-    public Task(String body, List<Tags> tags, User owned_by, List<User> assigned_to, Date dueDate) {
+    public Task(String body, User owned_by, List<User> assigned_to, Date dueDate) {
         this.body = body;
-        this.tags = tags;
         this.owned_by = owned_by;
         this.assigned_to = assigned_to;
         this.dueDate = dueDate;
@@ -68,14 +68,6 @@ public class Task {
 
     public void setBody(String body) {
         this.body = body;
-    }
-
-    public List<Tags> getTags() {
-        return tags;
-    }
-
-    public void setTags(List<Tags> tags) {
-        this.tags = tags;
     }
 
     public User getOwned_by() {
@@ -104,7 +96,7 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task [body=" + body + ", dueDate=" + dueDate + ", owned_by=" + owned_by + ", tags=" + tags
+        return "Task [body=" + body + ", dueDate=" + dueDate + ", owned_by=" + owned_by + ",+ assigned_to="
                 + ", task_Id=" + task_Id + "]";
     }
 }
