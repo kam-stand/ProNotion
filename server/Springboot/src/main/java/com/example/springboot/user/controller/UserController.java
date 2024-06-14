@@ -5,8 +5,6 @@ import com.example.springboot.user.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +23,8 @@ public class UserController {
 
     @PostMapping(path = "/newUser")
     public User newUser(@RequestBody User user) {
-        if (user.getUsername() == null || user.getPassword() == null || user.getEmail() == null
-                || user.getPhone() == null) {
-            return null;
-        } else {
+        return userService.save(user);
 
-            return userService.save(user);
-        }
     }
 
     @GetMapping(path = "/getById")
@@ -46,32 +39,12 @@ public class UserController {
 
     @PostMapping(path = "/updateUser")
     public Boolean postMethodName(@RequestBody User user, long id) {
-        for (User u : userService.findAll()) {
-            if (u.getUser_ID() == id) {
-                if (user.getUsername() != null) {
-                    u.setUsername(user.getUsername());
-                }
-                if (user.getPassword() != null) {
-                    u.setPassword(user.getPassword());
-                }
-                if (user.getEmail() != null) {
-                    u.setEmail(user.getEmail());
-                }
-                if (user.getPhone() != null) {
-                    u.setPhone(user.getPhone());
-                }
-                if (user.getName() != null) {
-                    u.setName(user.getName());
-                }
-                if (user.getTeamName() != null) {
-                    u.setTeamName(user.getTeamName());
-                }
-                u.setUpdated_at(Date.from(Instant.now()));
-                userService.save(u);
-                return true;
-            }
+        // call the the user service to update the user
+        User updatedUser = userService.update(user, id);
+        // if the user is updated return true
+        if (updatedUser != null) {
+            return true;
         }
-
         return false;
     }
 

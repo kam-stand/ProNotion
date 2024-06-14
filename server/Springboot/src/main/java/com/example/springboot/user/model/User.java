@@ -39,12 +39,12 @@ public class User {
     private Date updated_at;
 
     @Value("USER")
-    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(nullable = true, columnDefinition = "VARCHAR(50)")
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Value("BASIC")
-    @Column(nullable = false, columnDefinition = "VARCHAR(50)")
+    @Column(nullable = true, columnDefinition = "VARCHAR(50)")
     @Enumerated(EnumType.STRING)
     private Membership membership;
 
@@ -162,6 +162,22 @@ public class User {
 
     public void setMembership(Membership membership) {
         this.membership = membership;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public List<Task> getAssigned_tasks() {
+        return assigned_tasks;
+    }
+
+    public void setAssigned_tasks(List<Task> assigned_tasks) {
+        this.assigned_tasks = assigned_tasks;
     }
 
 }
