@@ -1,0 +1,51 @@
+.searchbar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    border-radius: 15px;
+    width: max-content;
+    height: fit-content;
+}
+
+.search_wrapper{
+    display: flex; /* Aligns children (icon and input) side by side */
+    justify-content: start; /* Aligns children to the start of the wrapper */
+    align-items: center;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 100%; /* Adjust this to control the overall width of the search bar */
+    max-width: 600px; /* Example max-width, adjust as needed */
+}
+
+.search_wrapper div{
+    margin: 10px;
+    padding: 1rem;
+    vertical-align: middle;
+    color: #4D6B70;
+    font-size: 1rem;
+    /* Removed width to allow flexbox to manage spacing */
+}
+
+.search_wrapper input{
+    flex-grow: 1; /* Takes up the remaining space */
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.search_wrapper input::placeholder{
+    color: #000;
+}
+
+.search_wrapper input:hover{
+    background-color: #f0f0f0;
+}
+
+.search_wrapper div:hover, .search_wrapper input:hover{
+    color: #4D6B70;
+    cursor: pointer;
+}

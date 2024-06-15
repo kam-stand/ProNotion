@@ -18,7 +18,9 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    // Merge the typeRoots into the main compilerOptions object
+    "typeRoots": ["./node_modules/@types", "./src/custom.d.ts"] // Adjusted path
   },
   "include": [
     "src"
