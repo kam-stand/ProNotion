@@ -1,37 +1,7 @@
-.parent {
-    display: grid;
-    grid-template-columns: 200px 1fr; /* Adjust the sidebar width as needed */
-    grid-template-rows: auto 1fr;
-    gap: 10px; /* Adjust the gap between grid items as needed */
-    height: 100vh; /* Adjust based on your layout needs */
-  }
-  
-  .search {
-    grid-column: 1 / -1; /* Span across all columns */
-    align-items: center;
-    text-align: center;
-  }
-  
-  .sidebar {
-    /* Styles for sidebar */
-    border: 1px solid black;
-  }
-  
-  .main-progress {
-    display: grid;
-    grid-template-rows: 1fr auto;
+.Searchbar{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: none;
 
-    border: 1px solid black;
-  }
-  
-  .main {
-    /* Styles for main section */
-
-    border: 1px solid black;
-  }
-  
-  .progress {
-    /* Styles for progress section */
-
-    border: 1px solid black;
-  }
+}

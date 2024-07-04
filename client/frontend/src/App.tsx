@@ -3,7 +3,7 @@ import "./App.css";
 import Pricing from "./components/pages/pricing";
 import About from "./components/pages/about";
 import Landing from "./components/pages/landing";
-import Home from "./components/pages/home";
+import Home from "./components/pages/home_page/home_page";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
