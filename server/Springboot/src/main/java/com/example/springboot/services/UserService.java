@@ -12,10 +12,9 @@ import java.util.List;
 public class UserService  {
     @Autowired
     private UserRepository userRepository;
-    public String createUser(User user) {
-        userRepository.save(user);
-        String user_id = Long.toString(user.getUserId());
-        return user_id;
+    public User createUser(User user) {
+        return  userRepository.save(user);
+
     }
     public User getUserById(Long userId) {
         return userRepository.findById(userId).orElse(null);

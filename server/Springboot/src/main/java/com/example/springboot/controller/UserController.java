@@ -21,7 +21,7 @@ public class UserController {
     }
     @PostMapping("/postUser")
     public ResponseEntity<String> postUser(@RequestBody User newUser){
-        return ResponseEntity.status(200).body(userService.createUser(newUser));
+        return ResponseEntity.status(200).build();
     }
     @GetMapping("/getUserById")
     public ResponseEntity<User> getUserById(@RequestParam("id") long id){
