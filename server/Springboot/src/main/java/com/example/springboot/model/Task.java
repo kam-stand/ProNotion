@@ -1,6 +1,7 @@
 package com.example.springboot.model;
 import com.example.springboot.enums.Status;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,14 +29,6 @@ public class Task {
     @Value("notStarted")
     private Status status = Status.notStarted;
 
-    public List<User> getAssigned_to() {
-        return assigned_to;
-    }
-
-    public void setAssigned_to(List<User> assigned_to) {
-        this.assigned_to = assigned_to;
-    }
-
     @Column
     @CreationTimestamp
     private Date createDate;
@@ -56,7 +49,12 @@ public class Task {
    )
    private List<User> assigned_to = new ArrayList<>();
 
-   public Task() {
+   @OneToMany
+   @JoinColumn(name = "task_id")
+   private List<Tags> tags = new ArrayList<>();
+
+
+    public Task() {
 
    }
 
@@ -119,5 +117,21 @@ public class Task {
     }
     public Long getId() {
         return id;
+    }
+
+
+    public List<User> getAssigned_to() {
+        return assigned_to;
+    }
+
+    public void setAssigned_to(List<User> assigned_to) {
+        this.assigned_to = assigned_to;
+    }
+
+    public void setTags(List<Tags> tags) {
+        this.tags = tags;
+    }
+    public List<Tags> getTags() {
+        return tags;
     }
 }

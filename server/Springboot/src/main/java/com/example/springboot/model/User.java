@@ -24,14 +24,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
     @Column(name = "dateCreated",
             updatable = false)
     @CreationTimestamp
@@ -40,6 +32,15 @@ public class User {
     @ManyToMany(mappedBy = "assigned_to")
     private List<Task> tasks;
 
+
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 
 
     public User(){

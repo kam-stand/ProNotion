@@ -1,4 +1,5 @@
 package com.example.springboot.controller;
+import com.example.springboot.dto.TaskDTO;
 import com.example.springboot.model.Task;
 import com.example.springboot.services.TaskService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,19 +24,13 @@ public class TaskController {
     }
 
     @PostMapping("/postTask")
-    public ResponseEntity<Task> postTask(@RequestBody Task task, @RequestParam long userId) {
-        try {
-            Task createdTask = taskService.createTask(task, userId);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(null);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
+    public ResponseEntity<Task> postTask(@RequestBody TaskDTO taskDTO) {
+        return ResponseEntity.status(HttpStatusCode.valueOf(200)).body(taskService.postTask(taskDTO));
     }
 
     @PostMapping("/assignTask")
     public ResponseEntity<Task> assignTask(@RequestParam long taskId, @RequestParam List<Long> userId) {
-        Task assignedTask = taskService.assignTaskToUser(userId, taskId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(null);
+        Task assignedTask = taskService.assignTaskToUser(taskId, userId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(assignedTask);
     }
 }

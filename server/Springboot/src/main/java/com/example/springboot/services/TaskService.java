@@ -2,6 +2,8 @@
 
 package com.example.springboot.services;
 
+import com.example.springboot.dto.TaskDTO;
+import com.example.springboot.model.Tags;
 import com.example.springboot.model.Task;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.TaskRepository;
@@ -19,14 +21,9 @@ public class TaskService {
     @Autowired
     private UserService userService;
 
-    public Task createTask(Task task, long id) {
-        User user = userService.getUserById(id);
-        if(user == null) {
-            return null;
-        }
-        task.setOwner(user);
-        return taskRepository.save(task);
-    }
+    @Autowired
+    private TagsService tagsService;
+
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
@@ -37,18 +34,41 @@ public class TaskService {
 
     }
 
-    public Task assignTaskToUser(List<Long> userID, long taskID) {
-        Task task = taskRepository.findById(taskID).orElse(null);
-        if(task == null){
-            return null;
+    public Task assignTaskToUser(Long taskID, List<Long> userIds) {
+        Task task = getTaskById(taskID);
+        List<User> users = new ArrayList<>();
+        for (Long userId : userIds) {
+            User user = userService.getUserById(userId);
+            users.add(user);
         }
-        List<User> assigned_to = new ArrayList<>();
-        for(long userId : userID){
-            assigned_to.add(userService.getUserById(userId));
+        task.setAssigned_to(users);
+        return taskRepository.save(task);
+
+    }
+
+    public Task postTask(TaskDTO taskDTO){
+        Task task = new Task();
+        User user = userService.getUserById(taskDTO.getUserID());
+        task.setOwner(user);
+        task.setDescription(taskDTO.getDescription());
+        task.setTitle(taskDTO.getTitle());
+        // convert the long userIDs to actual user objects
+        List<User> users  = new ArrayList<>();
+        for(Long id : taskDTO.getAssigned_to()){
+            users.add(userService.getUserById(id));
         }
-        task.setAssigned_to(assigned_to);
+        List<Tags> tags = new ArrayList<>();
+        for(String tag : taskDTO.getTags()){
+            Tags tagObj = new Tags();
+            tagObj.setTag_name(tag);
+            tagsService.createTags(tagObj);
+            tags.add(tagObj);
+        }
+        task.setTags(tags);
+        task.setAssigned_to(users);
         taskRepository.save(task);
         return task;
+
     }
 
 
