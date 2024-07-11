@@ -122,7 +122,7 @@ export default function Pricing() {
           </div>
         </div>
       </div>
-      <div className="img">
+      {/* <div className="img">
         <img
           height="150px"
           alt="img1"
@@ -135,7 +135,7 @@ export default function Pricing() {
           width="fit-content"
           src="https://img.fruugo.com/product/7/87/969719877_max.jpg"
         />
-      </div>
+      </div> */}
       <Footer />
     </>
   );
