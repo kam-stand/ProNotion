@@ -1,5 +1,6 @@
 package com.example.springboot.controller;
 
+import com.example.springboot.dto.UserDTO;
 import com.example.springboot.model.User;
 import com.example.springboot.services.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -20,7 +21,7 @@ public class UserController {
         return ResponseEntity.status(200).body(userService.getAllUsers());
     }
     @PostMapping("/postUser")
-    public ResponseEntity<String> postUser(@RequestBody User newUser){
+    public ResponseEntity<String> postUser(@RequestBody UserDTO newUser){
         userService.createUser(newUser);
         return ResponseEntity.status(200).body(newUser.toString());
     }
