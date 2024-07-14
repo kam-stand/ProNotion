@@ -13,8 +13,16 @@ public class UserDTO {
     private String email;
     private String password;
 
+    public Enum role;
+
     private List<Long> task_id = new ArrayList<>();
 
+    public Enum getRole() {
+        return role;
+    }
+    public void setRole(Enum role) {
+        this.role = role;
+    }
 
     public String getFirstName() {
         return firstName;

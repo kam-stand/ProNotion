@@ -1,6 +1,7 @@
 package com.example.springboot.model;
 import jakarta.persistence.*;
-import java.util.Date;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -15,6 +16,17 @@ public class User {
     @Column(name = "firstName")
     private String firstName;
 
+    @Column
+    private Enum role;
+
+    public Enum getRole() {
+        return role;
+    }
+
+    public void setRole(Enum role) {
+        this.role = role;
+    }
+
     @Column(name = "lastName")
     private String lastName;
 
@@ -27,7 +39,7 @@ public class User {
     @Column(name = "dateCreated",
             updatable = false)
     @CreationTimestamp
-    private Date dateCreated;
+    private LocalDate dateCreated;
 
     @ManyToMany(mappedBy = "assigned_to")
     private List<Task> tasks;
@@ -47,13 +59,13 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String email, String password, Date dateCreated, List<Task> tasks) {
+    public User(String firstName, String lastName, String email, String password, Enum role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.dateCreated = dateCreated;
-        this.tasks = tasks;
+        this.role = role;
+        this.dateCreated = LocalDate.now();
     }
 
     public long getUserId() {
@@ -96,11 +108,11 @@ public class User {
         this.password = password;
     }
 
-    public Date getDateCreated() {
+    public LocalDate getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(Date dateCreated) {
+    public void setDateCreated(LocalDate dateCreated) {
         this.dateCreated = dateCreated;
     }
 
