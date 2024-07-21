@@ -4,36 +4,22 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-public class UserDetail implements UserDetails {
+public class MyUserDetails implements UserDetails {
 
-    private User user;
+    User user;
 
-    public UserDetail(User user) {
+    public MyUserDetails(User user) {
         this.user = user;
-    }
-
-    public String getFirstName(
-    ){
-        return user.getFirstName();
-    }
-
-    public String getLastName(){
-        return user.getLastName();
-    }
-
-    public String getEmail(){
-        return user.getEmail();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        return List.of((GrantedAuthority) user.getRole());
+        String role = String.valueOf(user.getRole());
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role);
+        return List.of(grantedAuthority);
     }
 
     @Override
@@ -41,29 +27,28 @@ public class UserDetail implements UserDetails {
         return user.getPassword();
     }
 
-
     @Override
     public String getUsername() {
-        return "";
+        return user.getEmail();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }
