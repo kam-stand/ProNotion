@@ -1,6 +1,6 @@
 package com.example.springboot.services;
 
-import com.example.springboot.model.MyUserDetails;
+import com.example.springboot.model.CustomUserDetail;
 import com.example.springboot.model.User;
 import com.example.springboot.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,19 +12,22 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class MyUserDetailService implements UserDetailsService {
+public class CustomUserDetailService implements UserDetailsService {
+
+    private final UserRepository userRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    public CustomUserDetailService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         Optional<User> user = userRepository.findByEmail(username);
-        if(user.isPresent()){
-            User newUser = user.get();
-            return new MyUserDetails(newUser);
+        if (user.isPresent()) {
+            return new CustomUserDetail(user.get());
+        } else {
+            throw new UsernameNotFoundException("User not found with email: " + username);
         }
-        throw new  UsernameNotFoundException("Could not find user");
     }
 }

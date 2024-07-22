@@ -1,41 +1,18 @@
 package com.example.springboot.dto;
 
-import com.example.springboot.enums.Roles;
-import com.example.springboot.enums.Status;
-
-import java.util.ArrayList;
-import java.util.List;
-
-public class UserDTO {
-    public UserDTO() {
-
-    }
+public class RegistrationRequest {
 
     private String firstName;
     private String lastName;
     private String email;
     private String password;
 
-    private Roles role;
+    public RegistrationRequest(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
 
-    private Status status;
-
-    public void setStatus(Status status) {
-
-        this.status = status;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    private List<Long> task_id = new ArrayList<>();
-
-    public Enum getRole() {
-        return role;
-    }
-    public void setRole(Roles role) {
-        this.role = role;
     }
 
     public String getFirstName() {
@@ -68,11 +45,5 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-    public List<Long> getTask_id() {
-        return task_id;
-    }
-    public void setTask_id(List<Long> task_id) {
-        this.task_id = task_id;
     }
 }
