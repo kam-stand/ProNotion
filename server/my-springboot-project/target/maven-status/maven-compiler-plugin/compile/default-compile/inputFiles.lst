@@ -1,6 +1,8 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/App.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/EventController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/TaskController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/UserController.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/Eventdto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/TaskDto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/UserDto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/enums/Priority.java
@@ -9,6 +11,7 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/model/Event.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/model/Task.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/model/User.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/repository/EventRepository.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/repository/TaskRepository.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/repository/UserRepository.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/TaskService.java

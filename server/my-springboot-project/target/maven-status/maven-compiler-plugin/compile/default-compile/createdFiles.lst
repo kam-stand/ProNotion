@@ -3,13 +3,16 @@ com/spring/dto/TaskDto.class
 com/spring/controller/UserController.class
 com/spring/enums/Priority.class
 com/spring/enums/Role.class
-com/spring/service/UserService.class
 com/spring/enums/Status.class
+com/spring/service/UserService.class
+com/spring/repository/EventRepository.class
 com/spring/model/Task.class
 com/spring/service/TaskService.class
 com/spring/App.class
 com/spring/dto/UserDto.class
 com/spring/repository/UserRepository.class
+com/spring/dto/Eventdto.class
 com/spring/model/Event.class
 com/spring/controller/TaskController.class
 com/spring/model/User.class
+com/spring/controller/EventController.class

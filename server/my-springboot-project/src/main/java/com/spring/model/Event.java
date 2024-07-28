@@ -26,4 +26,33 @@ public class Event {
     @Enumerated(EnumType.ORDINAL)
     private Priority priority;
 
+    public Event(String name, Priority priority) {
+        this.name = name;
+        this.priority = priority;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
 }
