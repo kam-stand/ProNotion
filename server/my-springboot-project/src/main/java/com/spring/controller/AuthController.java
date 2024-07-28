@@ -17,8 +17,8 @@ import com.spring.dto.UserDto;
 import com.spring.dto.auth.AuthResponseDto;
 import com.spring.dto.auth.LoginDto;
 import com.spring.enums.Role;
-import com.spring.repository.UserRepository;
 import com.spring.model.User;
+import com.spring.repository.UserRepository;
 
 @RestController
 @RequestMapping("/auth")
@@ -26,18 +26,18 @@ public class AuthController {
 
     private AuthenticationManager authenticationManager;
 
-    private PasswordEncoder passwordEncoder;
-
     private UserRepository userRepository;
+
+    private PasswordEncoder passwordEncoder;
 
     private JwtGenerator jwtGenerator;
 
-    public AuthController(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder,
-            UserRepository userRepository, JwtGenerator jwtGenerator) {
+    public AuthController(AuthenticationManager authenticationManager,
+            UserRepository userRepository, JwtGenerator jwtGenerator, PasswordEncoder passwordEncoder) {
         this.authenticationManager = authenticationManager;
-        this.passwordEncoder = passwordEncoder;
         this.userRepository = userRepository;
         this.jwtGenerator = jwtGenerator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping("/login")
@@ -63,7 +63,16 @@ public class AuthController {
             user.setLastName(userDto.getLastName());
             user.setRole(Role.USER);
             userRepository.save(user);
-            return ResponseEntity.ok("User created successfully");
+
+            // Authenticate the user
+            Authentication authentication = authenticationManager
+                    .authenticate(new UsernamePasswordAuthenticationToken(userDto.getEmail(), userDto.getPassword()));
+
+            SecurityContextHolder.getContext().setAuthentication(authentication);
+            String token = jwtGenerator.generateToken(authentication);
+            String tokenType = "Bearer ";
+
+            return new ResponseEntity<>(new AuthResponseDto(token, tokenType), HttpStatus.OK);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error creating user");
         }

@@ -3,6 +3,7 @@ package com.spring.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.spring.dto.UserDto;
@@ -15,15 +16,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserDto createUser(UserDto userDto) {
+    private PasswordEncoder passwordEncoder;
+
+    public void createUser(UserDto userDto) {
         User user = new User();
         user.setEmail(userDto.getEmail());
-        user.setPassword(userDto.getPassword());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
-        user.setRole(userDto.getRole());
+
         userRepository.save(user);
-        return userDto;
     }
 
     public long getUserById(long id) {
