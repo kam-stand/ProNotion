@@ -11,16 +11,24 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.spring.service.CustomeUserDetailService;
+
 @Configuration
 @EnableWebSecurity
 public class Security {
+
+    private CustomeUserDetailService userDetailService;
+
+    Security(CustomeUserDetailService userDetailService) {
+        this.userDetailService = userDetailService;
+    }
 
     // creating the security filter chain
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(
-                        auth -> auth.requestMatchers("/auth/**").permitAll()
+                        auth -> auth.requestMatchers("/auth/register").permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
