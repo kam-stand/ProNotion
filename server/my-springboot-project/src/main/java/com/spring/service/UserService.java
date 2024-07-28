@@ -2,7 +2,10 @@ package com.spring.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.spring.dto.TaskDto;
 import com.spring.dto.UserDto;
+import com.spring.model.Task;
 import com.spring.model.User;
 import com.spring.repository.UserRepository;
 
@@ -21,6 +24,15 @@ public class UserService {
         user.setRole(userDto.getRole());
         userRepository.save(user);
         return userDto;
+    }
+
+    public boolean addTaskToUser(Long userId, TaskDto taskDto) {
+        User user = userRepository.findById(userId).get();
+        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate(), taskDto.getStatus());
+        user.getTasks().add(task);
+        userRepository.save(user);
+        return true;
+
     }
 
 }
