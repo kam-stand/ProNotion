@@ -1,10 +1,11 @@
-import './App.css';
+import "./App.css";
+import Header from "./page_layouts/header";
 
 function App() {
   return (
-   <div>
-    hello world
-    </div>
+    <>
+      <Header />
+    </>
   );
 }
 
