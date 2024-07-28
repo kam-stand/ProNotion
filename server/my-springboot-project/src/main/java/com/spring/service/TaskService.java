@@ -19,7 +19,7 @@ public class TaskService {
     private UserRepository userRepository;
 
     public TaskDto createTask(TaskDto taskDto) {
-        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate(), taskDto.getStatus());
+        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getStatus(), taskDto.getDueDate());
         taskRepository.save(task);
         return taskDto;
     }
@@ -33,7 +33,7 @@ public class TaskService {
     }
 
     public void addTask(TaskDto taskDto, long userId) {
-        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate(), taskDto.getStatus());
+        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getStatus(), taskDto.getDueDate());
         User user = userRepository.findById(userId).orElse(null);
         if (user != null) {
             task.setUser(user);

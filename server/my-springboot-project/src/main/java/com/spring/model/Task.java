@@ -3,6 +3,7 @@ package com.spring.model;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.spring.enums.Status;
 
@@ -38,7 +39,8 @@ public class Task {
     @Value("CURRENT_TIMESTAMP")
     private Date createdAt;
 
-    @Column(name = "due_date", nullable = true)
+    @Column(name = "due_date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     // creating a user object to associate with a task
@@ -51,11 +53,13 @@ public class Task {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    public Task(String title, String description, Date createdAt, Status status) {
+    public Task(String title, String description, Status status, Date dueDate) {
         this.title = title;
         this.description = description;
-        this.createdAt = createdAt;
         this.status = status;
+        this.dueDate = dueDate;
+        createdAt = new Date();
+
     }
 
     public User getUser() {

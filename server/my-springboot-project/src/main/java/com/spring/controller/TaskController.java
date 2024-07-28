@@ -21,9 +21,11 @@ public class TaskController {
     private TaskService taskService;
 
     @PostMapping("/create")
-    public ResponseEntity<?> PostTask(@RequestBody TaskDto taskDto) {
+    public ResponseEntity<?> PostTask(@RequestBody List<TaskDto> taskDto) {
         try {
-            taskService.createTask(taskDto);
+            for (TaskDto task : taskDto) {
+                taskService.createTask(task);
+            }
             return ResponseEntity.ok("Task created successfully");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("Error creating task");

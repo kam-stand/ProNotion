@@ -2,16 +2,15 @@ package com.spring.dto;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.spring.enums.Status;
 
 public class TaskDto {
 
     private String title;
-
     private String description;
-
-    private boolean completed = false;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dueDate;
 
     private Status status;
@@ -20,12 +19,10 @@ public class TaskDto {
     }
 
     public TaskDto(String title, String description, Date dueDate, Status status) {
-
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.status = status;
-
     }
 
     public Status getStatus() {
@@ -52,14 +49,6 @@ public class TaskDto {
         this.description = description;
     }
 
-    public boolean isCompleted() {
-        return completed;
-    }
-
-    public void setCompleted(boolean completed) {
-        this.completed = completed;
-    }
-
     public Date getDueDate() {
         return dueDate;
     }
@@ -67,5 +56,4 @@ public class TaskDto {
     public void setDueDate(Date dueDate) {
         this.dueDate = dueDate;
     }
-
 }

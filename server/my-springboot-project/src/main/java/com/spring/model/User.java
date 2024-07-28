@@ -2,6 +2,8 @@ package com.spring.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.spring.enums.Role;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +14,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import java.util.Date;
 
 @Entity
 @Table(name = "users")
@@ -28,6 +31,10 @@ public class User {
     private String email;
     @Column(name = "password")
     private String password;
+
+    @Column(name = "created_at", updatable = false)
+    @Value("CURRENT_TIMESTAMP")
+    private Date createdAt;
 
     // creating a list of tasks a user can have
     @OneToMany(mappedBy = "user")
@@ -47,6 +54,7 @@ public class User {
         this.email = email;
         this.password = password;
         this.role = role;
+        createdAt = new Date();
     }
 
     public Long getId() {
