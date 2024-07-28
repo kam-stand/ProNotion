@@ -4,11 +4,17 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Value;
 
+import com.spring.enums.Status;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,10 +41,37 @@ public class Task {
     @Column(name = "due_date", nullable = true)
     private Date dueDate;
 
-    public Task(String title, String description, Date createdAt) {
+    // creating a user object to associate with a task
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    // creating a status object to associate with a task
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
+
+    public Task(String title, String description, Date createdAt, Status status) {
         this.title = title;
         this.description = description;
         this.createdAt = createdAt;
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Long getId() {

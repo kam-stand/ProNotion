@@ -14,7 +14,7 @@ public class TaskService {
     private TaskRepository taskRepository;
 
     public TaskDto createTask(TaskDto taskDto) {
-        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate());
+        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate(), taskDto.getStatus());
         taskRepository.save(task);
         return taskDto;
     }

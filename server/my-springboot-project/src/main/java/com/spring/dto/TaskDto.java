@@ -2,6 +2,8 @@ package com.spring.dto;
 
 import java.util.Date;
 
+import com.spring.enums.Status;
+
 public class TaskDto {
 
     private String title;
@@ -12,13 +14,26 @@ public class TaskDto {
 
     private Date dueDate;
 
+    private Status status;
+
     public TaskDto() {
     }
 
-    public TaskDto(String title, String description, Date dueDate) {
+    public TaskDto(String title, String description, Date dueDate, Status status) {
+
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
+        this.status = status;
+
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public String getTitle() {
