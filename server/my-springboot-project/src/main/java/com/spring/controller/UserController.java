@@ -29,14 +29,4 @@ public class UserController {
         }
     }
 
-    @PostMapping("/task")
-    public ResponseEntity<?> PostTaskToUser(@RequestParam Long userId, @RequestBody TaskDto taskDto) {
-        try {
-            userService.addTaskToUser(userId, taskDto);
-            return ResponseEntity.ok("Task added to user successfully");
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error adding task to user");
-        }
-    }
-
 }

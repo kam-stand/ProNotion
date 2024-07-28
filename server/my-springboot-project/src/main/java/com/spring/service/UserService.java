@@ -26,13 +26,4 @@ public class UserService {
         return userDto;
     }
 
-    public boolean addTaskToUser(Long userId, TaskDto taskDto) {
-        User user = userRepository.findById(userId).get();
-        Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getDueDate(), taskDto.getStatus());
-        user.getTasks().add(task);
-        userRepository.save(user);
-        return true;
-
-    }
-
 }
