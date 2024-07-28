@@ -1,11 +1,11 @@
 package com.spring.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.dto.TaskDto;
 import com.spring.dto.UserDto;
-import com.spring.model.Task;
 import com.spring.model.User;
 import com.spring.repository.UserRepository;
 
@@ -24,6 +24,15 @@ public class UserService {
         user.setRole(userDto.getRole());
         userRepository.save(user);
         return userDto;
+    }
+
+    public long getUserById(long id) {
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get().getId();
+        }
+        return -1;
+
     }
 
 }
