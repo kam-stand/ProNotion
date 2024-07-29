@@ -1,6 +1,6 @@
 # ProNotion
 
-![ProNotion Logo](./client/frontend//src/assets/logo.png)
+![ProNotion Logo]
 
 ProNotion is a comprehensive web application designed to enhance your work productivity within your organization. With ProNotion, you can efficiently manage tasks, projects, and communication via email and teams.
 
