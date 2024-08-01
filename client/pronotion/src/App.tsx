@@ -1,13 +1,9 @@
-import "./App.css";
-import Footer from "./page_layouts/footer";
-import Header from "./page_layouts/header";
+import WelcomePage from "./pages/welcome_page";
 
 function App() {
   return (
     <>
-      <Header />
-
-      <Footer />
+      <WelcomePage />
     </>
   );
 }

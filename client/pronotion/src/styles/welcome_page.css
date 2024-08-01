@@ -1,0 +1,80 @@
+.welcome-parent{
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    gap: 120px;
+    background-color: #f0f0f0;
+}
+
+.welcome-header{
+    margin: 40px;
+}
+
+.welcome-body{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 40px;
+    margin: 50px;
+    border: 1px solid #f0f0f0;
+    height: 200px;
+    width: 95%;
+    border-radius: 10px;
+}
+
+.welcome-footer{
+    margin: 40px;
+} 
+
+li{
+    list-style-type: none;
+    color: white;
+
+}
+.ol{
+  text-align: center;
+}
+
+.list{
+    display: inline;
+    margin: 10px;
+}
+
+.icon{
+    margin-left: 15px;
+}
+
+/* Style for the first welcome body */
+.welcome-body:nth-child(1) {
+    background-color: #d1d1f1; /* Slightly darker than parent background */
+}
+
+/* Style for the second welcome body */
+.welcome-body:nth-child(2) {
+    background-color: #bcbce7; /* Slightly darker */
+}
+
+/* Style for the third welcome body */
+.welcome-body:nth-child(3) {
+    background-color: #a7a7dd; /* Slightly darker */
+}
+
+/* Style for the fourth welcome body */
+.welcome-body:nth-child(4) {
+    background-color: #9292d3; /* Slightly darker */
+}
+
+/* Style for the fifth welcome body */
+.welcome-body:nth-child(5) {
+    background-color: #7d7dc9; /* Slightly darker */
+}
+.sub-info{
+    text-align: center;
+    margin: 10px;
+}
+.info{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;
+    align-items: center;
+}
