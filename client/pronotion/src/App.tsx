@@ -1,9 +1,9 @@
-import WelcomePage from "./pages/welcome_page";
+import AuthPage from "./pages/auth_page";
 
 function App() {
   return (
     <>
-      <WelcomePage />
+      <AuthPage />
     </>
   );
 }

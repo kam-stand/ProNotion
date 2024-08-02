@@ -37,6 +37,20 @@ export default function WelcomePage() {
           </div>
         </div>
       </div>
+      <div className="infographic">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQd5j-egRUfvCx1xK_LPVmf4o5XgNZh4jCxVw&usqp=CAU"
+          alt="project-management"
+          sizes="30"
+        />
+        <div className="info-2">
+          <h2>Project Management</h2>
+          <p>
+            Manage your projects with ease. Create, assign, and track tasks
+            efficiently.
+          </p>
+        </div>
+      </div>
 
       <div className="welcome-body">
         <div className="info">
@@ -61,18 +75,18 @@ export default function WelcomePage() {
           </div>
         </div>
       </div>
-      <div className="welcome-body">
-        <div className="info">
-          <div>
-            <h2>How to get started?</h2>
-            <div className="sub-info">
-              <ol className="list">
-                <li>Sign up</li>
-                <li>Sign in</li>
-                <li>Start using</li>
-              </ol>
-            </div>
-          </div>
+      <div className="infographic">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ24i_9FEeJJoxFjG5wyFR_ntQHY4gGjB_7QA&usqp=CAU"
+          alt="dev-management"
+          sizes="30"
+        />
+        <div className="info-2">
+          <h2>Development Management</h2>
+          <p>
+            Manage your development projects with ease. Create, assign, and
+            track tasks efficiently.
+          </p>
         </div>
       </div>
 

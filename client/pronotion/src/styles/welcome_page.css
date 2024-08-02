@@ -15,7 +15,7 @@
     display: flex;
     justify-content: space-evenly;
     gap: 40px;
-    margin: 50px;
+    margin: 20px;
     border: 1px solid #f0f0f0;
     height: 200px;
     width: 95%;
@@ -65,7 +65,7 @@ li{
 }
 
 /* Style for the fifth welcome body */
-.welcome-body:nth-child(5) {
+.welcome-body:nth-child(6) {
     background-color: #7d7dc9; /* Slightly darker */
 }
 .sub-info{
@@ -77,4 +77,42 @@ li{
     justify-content: space-evenly;
     text-align: center;
     align-items: center;
+}
+
+.infographic{
+background-color: white;
+  height: 400px;
+    width: 95%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    animation: fadeIn 2s;
+    border-radius: 20px;
+    /* create a shadow */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
+}
+
+.infographic img{
+  width: max-content;
+  height: max-content;
+}
+
+/* create a animation for the opacity to increase for the inforgraphic when loading */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.infographic img {
+  animation: fadeIn 2s;
+}
+
+/* create hoover affect for inforgraphic images */
+.infographic img:hover {
+  transform: scale(1.1);
 }

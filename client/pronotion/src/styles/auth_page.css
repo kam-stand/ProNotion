@@ -1,0 +1,57 @@
+.auth-parent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .auth-button {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .auth-button button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .auth-button button:hover {
+    background-color: #45a049;
+  }
+  
+  .login, .signup {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .login input, .signup input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .login button, .signup button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .login button:hover, .signup button:hover {
+    background-color: #45a049;
+  }
+  
