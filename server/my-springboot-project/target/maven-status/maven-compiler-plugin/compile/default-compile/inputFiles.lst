@@ -24,3 +24,5 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/CustomeUserDetailService.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/TaskService.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/UserService.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/utils/Email.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/utils/email/Email.java

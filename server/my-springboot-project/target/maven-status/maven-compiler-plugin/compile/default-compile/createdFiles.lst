@@ -1,3 +1,4 @@
+com/spring/utils/Email$1.class
 com/spring/dto/TaskDto.class
 com/spring/enums/Role.class
 com/spring/service/UserService.class
@@ -5,6 +6,7 @@ com/spring/enums/Status.class
 com/spring/repository/EventRepository.class
 com/spring/model/Task.class
 com/spring/service/TaskService.class
+com/spring/utils/Email.class
 com/spring/config/middleware/JwtAuthFilter.class
 com/spring/repository/TaskRepository.class
 com/spring/service/CustomeUserDetailService.class

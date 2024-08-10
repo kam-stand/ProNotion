@@ -57,6 +57,17 @@
     <version>0.9.1</version>
 </dependency>
         <!-- Add other dependencies as needed -->
+        <dependency>
+    <groupId>javax.annotation</groupId>
+    <artifactId>javax.annotation-api</artifactId>
+    <version>1.3.2</version>
+</dependency>
+        <!-- add the java mail api -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
