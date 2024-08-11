@@ -12,7 +12,7 @@ export default function Header() {
         </div>
         <div>
           <div className="header-links">
-            <a href="/login">Login</a>
+            <a href="/auth">Login</a>
             <a href="/home">Home</a>
             <a href="/profile">Profile</a>
           </div>

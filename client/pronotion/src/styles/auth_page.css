@@ -141,3 +141,10 @@
 width: max-content;
 
 }
+.price{
+  text-decoration: none;
+  color: white;
+  background-color: #0056b3;
+  padding: 10px;
+  border-radius: 5px;
+}

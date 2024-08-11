@@ -57,6 +57,9 @@ export default function WelcomePage() {
           <div>
             <h2>Why choose us?</h2>
             <div className="sub-info">
+              <a href="/price" className="price">
+                Pricing
+              </a>
               <ol className="list">
                 <li>
                   Affordable
