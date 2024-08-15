@@ -11,6 +11,7 @@ com/spring/config/middleware/JwtAuthFilter.class
 com/spring/repository/TaskRepository.class
 com/spring/service/CustomeUserDetailService.class
 com/spring/config/Security.class
+com/spring/utils/EmailService$2.class
 com/spring/config/middleware/JwtGenerator.class
 com/spring/enums/Priority.class
 com/spring/controller/UserController.class
@@ -22,6 +23,7 @@ com/spring/dto/UserDto.class
 com/spring/controller/EmailController.class
 com/spring/dto/auth/LoginDto.class
 com/spring/repository/UserRepository.class
+com/spring/dto/EmailMessageDTO.class
 com/spring/dto/Eventdto.class
 com/spring/model/Event.class
 com/spring/controller/TaskController.class

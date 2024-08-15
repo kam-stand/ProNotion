@@ -1,8 +1,6 @@
 package com.spring.config;
 
 import java.util.Arrays;
-import java.util.List;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,17 +18,10 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.spring.config.middleware.JwtAuthFilter;
-import com.spring.service.CustomeUserDetailService;
 
 @Configuration
 @EnableWebSecurity
 public class Security {
-
-    private CustomeUserDetailService userDetailService;
-
-    Security(CustomeUserDetailService userDetailService) {
-        this.userDetailService = userDetailService;
-    }
 
     // creating the security filter chain
     @Bean

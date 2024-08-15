@@ -8,6 +8,7 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/EventController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/TaskController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/UserController.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/EmailMessageDTO.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/Eventdto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/TaskDto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/UserDto.java
