@@ -47,10 +47,6 @@ const pricing = (header: String, pricing: String, info: String[]) => {
           </h3>
         </div>
         <div className="info">
-          {/* <p>10 users included</p>
-          <p>2 GB of storage</p>
-          <p>Email support</p>
-          <p>Help center access</p> */}
           {info.map((item, index) => {
             return <p key={index}>{item}</p>;
           })}

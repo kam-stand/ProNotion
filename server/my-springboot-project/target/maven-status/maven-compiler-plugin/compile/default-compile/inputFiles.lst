@@ -4,6 +4,7 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/middleware/JwtAuthFilter.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/middleware/JwtGenerator.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/AuthController.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/EmailController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/EventController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/TaskController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/UserController.java
@@ -25,4 +26,4 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/TaskService.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/service/UserService.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/utils/Email.java
-/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/utils/email/Email.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/utils/EmailService.java

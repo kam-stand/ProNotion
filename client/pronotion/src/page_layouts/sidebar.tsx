@@ -1,16 +1,15 @@
+import React from "react";
+import "../styles/sidebar.css";
+
 export default function Sidebar() {
   return (
     <>
-      <div>
-        <h1>ProNotion </h1>
-        <h3>
-          ProNotion is a platform to share your ideas, thoughts, and knowledge
-          with the world.{" "}
-        </h3>
-
-        <div>
-          <button>Sign Up</button>
-          <button>Sign In</button>
+      <div className="nav-parent">
+        <div className="nav-list">
+          <div className="nav-item"> Email </div>
+          <div className="nav-item"> Task </div>
+          <div className="nav-item"> Project </div>
+          <div className="nav-item"> Teams </div>
         </div>
       </div>
     </>

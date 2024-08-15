@@ -1,4 +1,4 @@
-com/spring/utils/Email$1.class
+com/spring/utils/EmailService$1.class
 com/spring/dto/TaskDto.class
 com/spring/enums/Role.class
 com/spring/service/UserService.class
@@ -19,10 +19,12 @@ com/spring/dto/auth/AuthResponseDto.class
 com/spring/controller/AuthController.class
 com/spring/App.class
 com/spring/dto/UserDto.class
+com/spring/controller/EmailController.class
 com/spring/dto/auth/LoginDto.class
 com/spring/repository/UserRepository.class
 com/spring/dto/Eventdto.class
 com/spring/model/Event.class
 com/spring/controller/TaskController.class
+com/spring/utils/EmailService.class
 com/spring/model/User.class
 com/spring/controller/EventController.class

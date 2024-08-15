@@ -12,17 +12,20 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
 public class JwtGenerator {
+
+    private final String jwtSecret = "secretkey";  // Use the same key throughout
+
     public String generateToken(Authentication authentication) {
         String name = authentication.getName();
         Date currentDate = new Date();
-        Date expireDate = new Date(currentDate.getTime() + 864000000);
+        Date expireDate = new Date(currentDate.getTime() + 864000000);  // 10 days
 
         // Create the JWT Token
         String token = Jwts.builder()
                 .setSubject(name)
                 .setIssuedAt(currentDate)
                 .setExpiration(expireDate)
-                .signWith(SignatureAlgorithm.HS256, "secretkey")
+                .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();
 
         return token;
@@ -30,20 +33,18 @@ public class JwtGenerator {
 
     public String getUsernameFromToken(String token) {
         Claims claims = Jwts.parser()
-                .setSigningKey("secret")
+                .setSigningKey(jwtSecret)
                 .parseClaimsJws(token)
                 .getBody();
         return claims.getSubject();
-
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser().setSigningKey("secret").parseClaimsJws(token);
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
             return true;
         } catch (Exception e) {
-            throw new AuthenticationCredentialsNotFoundException("token expired or invalid");
+            throw new AuthenticationCredentialsNotFoundException("token expired or invalid", e);
         }
     }
-
 }

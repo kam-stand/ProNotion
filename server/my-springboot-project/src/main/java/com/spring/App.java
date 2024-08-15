@@ -10,8 +10,6 @@ import javax.mail.MessagingException;
 public class App {
     public static void main(String[] args) throws MessagingException {
         SpringApplication.run(App.class, args);
-        Email email = new Email();
-        email.listenEmail("kamrul.hassan@stonybrook.edu","Fahim84590@123111402!");
         System.out.println("Hello World!");
     }
 }
