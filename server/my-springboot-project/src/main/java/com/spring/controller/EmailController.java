@@ -1,34 +1,50 @@
 package com.spring.controller;
 
-import com.spring.dto.EmailMessageDTO;
-import com.spring.utils.Email;
-import com.spring.utils.EmailService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 import javax.mail.Message;
-import java.util.List;
+import javax.mail.MessagingException;
+
+import org.apache.catalina.connector.Response;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.dto.EmailResponseDto;
+import com.spring.utils.Email.EmailService;
 
 @RestController
 @RequestMapping("/email")
 public class EmailController {
 
-    private final EmailService emailService;
+    @Autowired
+    private EmailService emailService;
 
-    public EmailController(EmailService emailService) {
-        this.emailService = emailService;
-    }
+    // @GetMapping("/fetch")
+    // public CompletableFuture<List<EmailResponseDto>> fetchEmails() {
+    // return emailService.fetchEmails();
 
-    @PostMapping("/send")
-    public ResponseEntity<?> sendEmail(@RequestBody Email email) {
-        return new ResponseEntity<>(emailService.sendEmail(email), HttpStatus.OK);
-
-    }
+    // }
 
     @GetMapping("/fetch")
-    public ResponseEntity<?> fetchEmail() {
-        return new ResponseEntity<>(emailService.fetchEmails(), HttpStatus.OK);
+    public ResponseEntity<List<String>> fetchEmails() {
+        List<Message> emails = emailService.fetchMessages();
+        List<String> emailSubjects = new ArrayList<>();
+        for (Message email : emails) {
+            try {
+                emailSubjects.add(email.getSubject().toString());
+            } catch (MessagingException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        return new ResponseEntity<>(emailSubjects, HttpStatus.OK);
     }
 
 }
