@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import com.spring.dto.Email;
 import com.spring.service.Email.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +17,7 @@ public class EmailController {
     EmailService emailService;
 
     @GetMapping
-    public List<String> fetchAllEmails() {
+    public List<Email> fetchAllEmails() {
         return emailService.fetchEmail("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!");
     }
 }

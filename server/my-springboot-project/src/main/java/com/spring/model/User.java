@@ -45,6 +45,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @Column(name = "email_password")
+    private String email_password;
+
     public User() {
     }
 
@@ -111,6 +114,20 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+    public String getEmail_password() {
+        return email_password;
+    }
+
+    public void setEmail_password(String email_password) {
+        this.email_password = email_password;
     }
 
 }
