@@ -1,11 +1,15 @@
 package com.spring.service.Email;
 
 import com.spring.dto.Email;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.*;
+import javax.mail.FetchProfile.Item;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -17,6 +21,7 @@ public class EmailService {
      * 2. Fetch the email one by one and then put them into an array object
      *
      */
+
 
     public List<Email> fetchEmail(String username, String password) {
         Properties prop = new Properties();
@@ -34,53 +39,72 @@ public class EmailService {
             }
         });
 
+
+        return null;
+
+
+        
+    }
+
+
+    public Store connection(String username, String password, EmailProtocol emailProtocol, boolean send){
+        Session session = null;
+
+        if(send){
+            session= emailProtocol.SmtpSession();
+        }
+
+
+        session = emailProtocol.ImapSession();
+        Store store;
         try {
-            // create a store and connect to the email server
-            Store store = session.getStore("imaps");
+            store = session.getStore("imaps");
             store.connect(username, password);
-            Folder inbox = store.getFolder("INBOX");
-
-            List<String> subjectList = new ArrayList<>();
-            List<String> recipientList = new ArrayList<>();
-
-            List< Email> emailList = new ArrayList<>();
-
-            inbox.open(Folder.READ_WRITE);
-            FetchProfile fetchProfile = new FetchProfile();
-
-            fetchProfile.add(FetchProfile.Item.ENVELOPE);
-            Message[] messages = inbox.getMessages();
-            inbox.fetch(messages, fetchProfile);
-
-            for (Message message : messages) {
-                String subject = message.getSubject();
-                if (subject == null || subject.isEmpty()) {
-                    subject = "Empty";
-                }
-                Address[] recepient = message.getRecipients(Message.RecipientType.TO);
-                if (recepient != null && recepient.length > 0) {
-                    recipientList.add(recepient[0].toString());
-
-                    Email email = new Email(subject,recipientList.toArray(new String[recipientList.size()]) );
-                    emailList.add(email);
-
-
-                subjectList.add(subject);
-                }
-            }
-
-            for (String s : subjectList) {
-                System.out.println(s);
-            }
-            for (String s : recipientList) {
-                System.out.println(s);
-            }
-            store.close();
-            return emailList;
-
-        } catch (Exception e) {
+            
+            return store;
+        } catch (MessagingException e) {
             e.printStackTrace();
+
         }
         return null;
+    
     }
+
+    public Folder openFolder(Store store, int Start, int end) throws MessagingException{
+
+        Folder inbox = store.getFolder("INBOX");
+        inbox.open(Folder.READ_ONLY);
+
+        FetchProfile fetchProfile = new FetchProfile();
+        fetchProfile.add(Item.ENVELOPE);
+        fetchProfile.add(Item.CONTENT_INFO);
+
+
+        Message [] messages = inbox.getMessages(Start,end);
+        inbox.fetch(messages, fetchProfile);
+
+        return inbox;
+        
+    }
+
+
+    @Async
+    public Comparable<List<Email>> emailList(Folder inbox) throws MessagingException{
+
+        List<Email> emailList = new ArrayList<>();
+
+        for(Message message: inbox.getMessages()){
+            
+        }
+
+
+        return null;
+
+    
+    }
+
+
+
+
+    
 }
