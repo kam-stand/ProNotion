@@ -34,6 +34,7 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         String token = getJwtFromRequest(request);
         if (token != null && jwtGenerator.validateToken(token)) {
             String username = jwtGenerator.getUsernameFromToken(token);
+            logger.debug("username is:" + username);
 
             UserDetails userDetails = userDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
@@ -42,6 +43,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(auth);
         }
+        logger.debug("Invalid JWT token: " + token);
+        logger.debug("JWT token is missing");
+
         filterChain.doFilter(request, response);
     }
 
