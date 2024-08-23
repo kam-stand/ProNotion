@@ -1,12 +1,13 @@
 com/spring/service/Email/EmailService.class
 com/spring/dto/TaskDto.class
-com/spring/service/Email/EmailService$1.class
+com/spring/service/Email/EmailProtocol.class
 com/spring/enums/Role.class
 com/spring/service/UserService.class
 com/spring/enums/Status.class
 com/spring/repository/EventRepository.class
 com/spring/model/Task.class
 com/spring/service/TaskService.class
+com/spring/service/Email/EmailProtocol$1.class
 com/spring/dto/EmailResponseDto.class
 com/spring/config/middleware/JwtAuthFilter.class
 com/spring/repository/TaskRepository.class
@@ -18,8 +19,8 @@ com/spring/controller/UserController.class
 com/spring/config/AuthEntryPoint.class
 com/spring/dto/auth/AuthResponseDto.class
 com/spring/controller/AuthController.class
-com/spring/dto/UserDto.class
 com/spring/App.class
+com/spring/dto/UserDto.class
 com/spring/controller/EmailController.class
 com/spring/dto/auth/LoginDto.class
 com/spring/repository/UserRepository.class
@@ -27,4 +28,5 @@ com/spring/dto/Eventdto.class
 com/spring/model/Event.class
 com/spring/controller/TaskController.class
 com/spring/model/User.class
+com/spring/dto/Email.class
 com/spring/controller/EventController.class
