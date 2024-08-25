@@ -17,6 +17,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+
 @Component
 public class JwtAuthFilter extends OncePerRequestFilter {
 
@@ -24,17 +25,20 @@ public class JwtAuthFilter extends OncePerRequestFilter {
     private JwtGenerator jwtGenerator;
 
     @Autowired
-    CustomeUserDetailService userDetailService;
+    private CustomeUserDetailService userDetailService;
 
+    @SuppressWarnings("null")
     @Override
-    protected void doFilterInternal(@SuppressWarnings("null") @NonNull HttpServletRequest request,
-            @SuppressWarnings("null") @NonNull HttpServletResponse response,
-            @SuppressWarnings("null") @NonNull FilterChain filterChain)
+    protected void doFilterInternal(@NonNull HttpServletRequest request,
+            @NonNull HttpServletResponse response,
+            @NonNull FilterChain filterChain)
             throws ServletException, IOException {
+        
         String token = getJwtFromRequest(request);
+
         if (token != null && jwtGenerator.validateToken(token)) {
             String username = jwtGenerator.getUsernameFromToken(token);
-            logger.debug("username is:" + username);
+            logger.debug("username is: " + username);
 
             UserDetails userDetails = userDetailService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails, null,
@@ -42,17 +46,21 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
             auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
             SecurityContextHolder.getContext().setAuthentication(auth);
+        } else {
+            if (token == null) {
+                logger.debug("JWT token is missing");
+            } else {
+                logger.debug("Invalid JWT token: " + token);
+            }
         }
-        logger.debug("Invalid JWT token: " + token);
-        logger.debug("JWT token is missing");
 
         filterChain.doFilter(request, response);
     }
 
-    public String getJwtFromRequest(HttpServletRequest request) {
+    private String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
         if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
+            return bearerToken.substring(7);
         }
         return null;
     }

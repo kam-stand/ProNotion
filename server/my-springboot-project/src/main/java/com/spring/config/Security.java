@@ -33,6 +33,7 @@ public class Security {
                 .authorizeHttpRequests(
                         auth -> auth.requestMatchers("/auth/register").permitAll()
                                 .requestMatchers("/auth/login").permitAll()
+                                .requestMatchers("/email").permitAll() // need to be set this way
                                 .anyRequest().authenticated())
 
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(authEntryPoint()))

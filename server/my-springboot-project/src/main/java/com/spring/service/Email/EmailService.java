@@ -1,196 +1,116 @@
 package com.spring.service.Email;
 
-import com.spring.dto.Email;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+import javax.mail.Address;
+import javax.mail.Folder;
+import javax.mail.Message;
+import javax.mail.Session;
+import javax.mail.Store;
 
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
-import javax.mail.*;
-import javax.mail.FetchProfile.Item;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Properties;
-import java.util.concurrent.CompletableFuture;
+import com.spring.dto.Email;
 
 @Service
 public class EmailService {
 
-    @Async
-    public CompletableFuture<List<Email>> fetchEmail(int start, int end) {
-        
-
-        Properties prop = new Properties();
-        
-        prop.put("mail.store.protocol", "imaps");
-        prop.put("mail.imaps.host", "imap.gmail.com");
-        prop.put("mail.imaps.port", "993");
-        prop.put("mail.imaps.ssl.enable", "true");
-        prop.put("mail.imaps.ssl.protocols", "TLSv1.2");
-        prop.put("mail.imaps.ssl.trust", "*");
-
-        Session session = Session.getInstance(prop, new Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!");
-            }
-        });
-
-
-
-
+    public List<Email> fetchEmail(String username, String password, int start, int end) {
+        EmailProtocol emailProtocol = new EmailProtocol(username, password);
+        Session imapSession = emailProtocol.ImapSession();
 
         List<Email> emails = new ArrayList<>();
-        try{
 
-        Store store = session.getStore("imaps");
-        store.connect("imap.gmail.com", "kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!");
-        Folder folder = store.getFolder("INBOX");
-        folder.open(Folder.READ_ONLY);
+        try {
+            Store store = imapSession.getStore("imaps");
+            store.connect(username, password);
 
-        FetchProfile profile = new FetchProfile();
-        profile.add(Item.ENVELOPE);
+            Folder inboxFolder = store.getFolder("INBOX");
+            inboxFolder.open(Folder.READ_ONLY);
 
-        Message [] messages = folder.getMessages(start, end);
-        
-        folder.fetch(messages, profile);
+            Message[] messages = inboxFolder.getMessages(start, end);
 
-        for(Message message: messages){
+            for (Message message : messages) {
+                String subject = message.getSubject();
+                String from = null;
 
-            if(message.getSubject() != null || message.getSubject().length() != 0){
-                String subject = message.getSubject().toString();
-                String from = message.getFrom().toString();
+                // Check if subject is null or empty, and handle it accordingly
+                if (subject == null || subject.isEmpty()) {
+                    subject = "(No Subject)";
+                }
+
+                // Get the sender's address
+                Address[] fromAddresses = message.getFrom();
+                if (fromAddresses != null && fromAddresses.length > 0) {
+                    from = fromAddresses[0].toString();
+                } else {
+                    from = "(Unknown Sender)";
+                }
+
                 emails.add(new Email(subject, from));
             }
 
-        }
-
-        return CompletableFuture.completedFuture(emails);
-        
-        }catch(MessagingException messagingException){
-            System.out.print(messagingException);
-        }
-
-     return null;   
-    }
-
-@Async
-public CompletableFuture<List<String>> getEmails(String username, String password) {
-    SecurityContext context = SecurityContextHolder.getContext();
-    return CompletableFuture.supplyAsync(() -> {
-        SecurityContextHolder.setContext(context);
-
-        EmailProtocol emailProtocol = new EmailProtocol(username, password);
-        List<String> fromList = new ArrayList<>();
-        Session imapSession = emailProtocol.ImapSession();
-
-        try  {
-            Store store = imapSession.getStore("imaps");
-            store.connect(username, password);
-            Folder inboxFolder = store.getFolder("INBOX");
-            inboxFolder.open(Folder.READ_WRITE);
-
-            Message[] messages = inboxFolder.getMessages();
-            for (Message m : messages) {
-                Address[] fromAddresses = m.getFrom();
-                if (fromAddresses != null) {
-                    for (Address address : fromAddresses) {
-                        fromList.add(address.toString());
-                    }
-                }
-            }
+            // Close the folder and store
             inboxFolder.close(false);
+            store.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return fromList;
-    });
-}
+        return emails;
+    }
 
 
 
-@Async
-public CompletableFuture<String> testEmails(String username, String pasword){
+    @Async
+    public CompletableFuture<List<Email>> getEmails(String username, String password, int start, int end){
 
-    return CompletableFuture.supplyAsync(
-        () -> {
-            EmailProtocol emailProtocol = new EmailProtocol(username, pasword);
-        Session imapSession = emailProtocol.ImapSession();
-        try {
-            Store store = imapSession.getStore("imaps");
-            store.connect(username, pasword);
-            Folder inboxFolder = store.getFolder("INBOX");
-            inboxFolder.open(Folder.READ_ONLY);
-
-            Message [] messages = inboxFolder.getMessages();
-            for(Message m: messages){
-                System.out.print(m.getFrom());
-            }
-
-            return "helloword";
-
-
-
-            
-        } 
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "world";
-        }
-
-    );
-
-}
-
-@Async
-public CompletableFuture<List<String>> getAsyncFrom(String username, String password) {
-    SecurityContext context = SecurityContextHolder.getContext();
-    return CompletableFuture.supplyAsync(() -> {
-        SecurityContextHolder.setContext(context);
-        return getFrom(username, password);
-    });
-}
-
-
-public List<String> getFrom(String username, String password) {
-    try {
         EmailProtocol emailProtocol = new EmailProtocol(username, password);
         Session imapSession = emailProtocol.ImapSession();
 
-        Store store = imapSession.getStore("imaps");
-        store.connect(username, password);
-        Folder inboxFolder = store.getFolder("INBOX");
-        inboxFolder.open(Folder.READ_ONLY);
+        List<Email> emails = new ArrayList<>();
 
-        Message[] messages = inboxFolder.getMessages();
+        try {
+            Store store = imapSession.getStore("imaps");
+            store.connect(username, password);
 
-        List<String> from = new ArrayList<>();
-        for (Message m : messages) {
-            from.add(m.getFrom()[0].toString()); // Access the first sender's address
+            Folder inboxFolder = store.getFolder("INBOX");
+            inboxFolder.open(Folder.READ_ONLY);
+
+            Message[] messages = inboxFolder.getMessages(start, end);
+
+            for (Message message : messages) {
+                String subject = message.getSubject();
+                String from = null;
+
+                // Check if subject is null or empty, and handle it accordingly
+                if (subject == null || subject.isEmpty()) {
+                    subject = "(No Subject)";
+                }
+
+                // Get the sender's address
+                Address[] fromAddresses = message.getFrom();
+                if (fromAddresses != null && fromAddresses.length > 0) {
+                    from = fromAddresses[0].toString();
+                } else {
+                    from = "(Unknown Sender)";
+                }
+
+                emails.add(new Email(subject, from));
+            }
+
+            // Close the folder and store
+            inboxFolder.close(false);
+            store.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        inboxFolder.close(false);
-        store.close();
+        return CompletableFuture.completedFuture(emails);
 
-        return from;
-
-    } catch (Exception e) {
-        e.printStackTrace();
     }
-    return Collections.emptyList(); // Return an empty list if an error occurs
 }
-
-
-
-    }
-
-
-
-
-
- 
-
