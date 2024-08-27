@@ -16,14 +16,17 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
     private PasswordEncoder passwordEncoder;
 
     public void createUser(UserDto userDto) {
+        System.out.println(userDto.toString() + "     " + userDto.getPassword());
         User user = new User();
         user.setEmail(userDto.getEmail());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
+        user.setRole(userDto.getRole());
 
         userRepository.save(user);
     }
