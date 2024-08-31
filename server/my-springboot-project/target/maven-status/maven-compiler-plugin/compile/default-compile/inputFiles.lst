@@ -1,4 +1,10 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/App.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/auth/Security.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/auth/jwt/JwtFilter.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/auth/jwt/JwtService.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/auth/user/CustomUserService.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/auth/user/CustomerUserDetails.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/AsyncConfig.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/AuthEntryPoint.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/Security.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/config/middleware/JwtAuthFilter.java
@@ -9,7 +15,7 @@
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/TaskController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/controller/UserController.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/Email.java
-/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/EmailResponseDto.java
+/home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/EmailSend.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/Eventdto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/TaskDto.java
 /home/kamhassan/Desktop/Projects/ProNotion/server/my-springboot-project/src/main/java/com/spring/dto/UserDto.java

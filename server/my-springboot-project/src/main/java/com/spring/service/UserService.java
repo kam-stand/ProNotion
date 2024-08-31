@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ public class UserService {
         user.setFirstName(userDto.getFirstName());
         user.setLastName(userDto.getLastName());
         user.setRole(userDto.getRole());
+        user.setCreatedAt(new Date());
 
         userRepository.save(user);
     }
@@ -39,5 +41,20 @@ public class UserService {
         return -1;
 
     }
+
+   
+
+    public boolean isValid(UserDto userDto){
+        if(!(userDto.getEmail().contains("@"))){
+            return false;
+        }
+        if (!(userDto.getPassword().length()<10)){
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 }

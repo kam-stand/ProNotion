@@ -1,5 +1,7 @@
 package com.spring.dto;
 
+import java.util.Date;
+
 import com.spring.enums.Role;
 
 public class UserDto {
@@ -9,6 +11,8 @@ public class UserDto {
     private String email;
     private String password;
     private Role role;
+
+    private Date DateCreated;
 
     public UserDto() {
     }
@@ -61,4 +65,15 @@ public class UserDto {
         this.role = role;
     }
 
+
+    public Date getDateCreated() {
+        return DateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        DateCreated = dateCreated;
+    }
+
+
+    
 }
