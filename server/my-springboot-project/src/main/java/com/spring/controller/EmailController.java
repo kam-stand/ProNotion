@@ -2,20 +2,16 @@ package com.spring.controller;
 
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.spring.dto.email.Email;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.spring.dto.email.Email;
-import com.spring.dto.email.EmailSend;
 import com.spring.service.EmailService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -23,24 +19,37 @@ import java.util.concurrent.CompletableFuture;
 @RequestMapping("/email")
 public class EmailController {
 
-    private static final Logger logger = LoggerFactory.getLogger(EmailController.class);
-
     @Autowired
-    EmailService emailService;
+    private  EmailService emailService;
+
+
+
+
+//    @GetMapping
+//    @Async("asyncTask")
+//    public void fetchEmails()  {
+//        CompletableFuture<List<Email>> completableFuture = emailService.getEmail();
+//        List<String> emails = new ArrayList<>();
+//        for (Email email : completableFuture.join()) {
+//            emails.add(email.toString());
+//        }
+//        for (String email : emails) {
+//            System.out.println(email);
+//        }
+//    }
 
     @GetMapping
-    public CompletableFuture<List<Email>> fetchEmail(@RequestParam int start, @RequestParam int end) {
-        logger.debug("Fetching emails from start: {} to end: {}", start, end);
+    @Async("asyncTask")
+    public CompletableFuture<List<Email>> fetchEmails() {
+        CompletableFuture<List<Email>> completableFuture = emailService.getEmail();
 
-        CompletableFuture<List<Email>> result = emailService.getEmails("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!", start, end);
-        logger.debug("sync processing started");
-        return result;
+        return completableFuture;
     }
 
-
-    @PostMapping
-    public CompletableFuture<Boolean> sendEmail( @RequestBody EmailSend emailSend){
-        CompletableFuture<Boolean> result = emailService.sendEmail("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!", emailSend);
-        return result;
+    @GetMapping("/test")
+    @Async
+    public CompletableFuture<String> testAsync() {
+        return CompletableFuture.completedFuture("Async response");
     }
+
 }

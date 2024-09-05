@@ -3,9 +3,12 @@
 package com.spring.auth;
 
 import com.spring.auth.jwt.JwtFilter;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -14,14 +17,17 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.task.DelegatingSecurityContextAsyncTaskExecutor;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.spring.auth.user.CustomUserService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.mail.Session;
+import java.util.concurrent.Executor;
 
 @Configuration
 @EnableWebSecurity
@@ -41,6 +47,7 @@ public class Security {
         .authorizeHttpRequests(
             auth -> auth
             .requestMatchers("/auth/**").permitAll()
+                    //.requestMatchers("/email/**").permitAll()
             .anyRequest().authenticated())
             .authenticationProvider(authenticationProvider())
             .authenticationManager(authenticationManager(new AuthenticationConfiguration()))
@@ -73,6 +80,8 @@ public class Security {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
         return authenticationConfiguration.getAuthenticationManager();
     }
+
+
 
     
 }
