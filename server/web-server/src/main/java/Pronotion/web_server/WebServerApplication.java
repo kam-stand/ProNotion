@@ -1,5 +1,6 @@
 package Pronotion.web_server;
 
+import Pronotion.web_server.model.User;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -7,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class WebServerApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(WebServerApplication.class, args);
 	}
 
