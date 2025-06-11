@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 public class UserService {
 
     private final UserDaoImpl userDao;
-
     public UserService(UserDaoImpl userDao) {
         this.userDao = userDao;
     }
@@ -43,7 +42,12 @@ public class UserService {
 
         boolean hasSpecial = password.matches(".*[!@\\$\\*].*");
         boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasUppercase = password.matches(".*[A-Z].*");
 
-        return hasSpecial && hasDigit;
+        return hasSpecial && hasDigit && hasUppercase;
+    }
+
+    void deleteUser(String email) {
+
     }
 }
