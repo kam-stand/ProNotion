@@ -5,8 +5,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -60,6 +58,13 @@ public class UserDaoImpl implements UserDao {
 
         }
 
+    }
+
+    @Override
+    public boolean existsUser(String email) {
+        String query = " SELECT COUNT(*) FROM Users WHERE email = ?";
+        int count = jdbcTemplate.queryForObject(query, Integer.class, email);
+        return count > 0;
     }
 
 

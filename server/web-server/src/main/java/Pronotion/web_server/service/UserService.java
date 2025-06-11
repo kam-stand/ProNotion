@@ -1,7 +1,7 @@
 package Pronotion.web_server.service;
 
 import Pronotion.web_server.dao.UserDaoImpl;
-import Pronotion.web_server.dto.UserDto;
+import Pronotion.web_server.model.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,9 +21,29 @@ public class UserService {
      *      d. Hash the password
      */
 
-    void addUser(UserDto userDto) {
-
+    void addUser(String name, String email, String password) {
+        if (validEmail(email) && validPassword(password) && checkUserExists(email)) {
+            userDao.createUser(new User(name, email, password));
+        }
     }
 
+    boolean checkUserExists(String email) {
+        return userDao.existsUser(email);
+    }
 
+    boolean validEmail(String email) {
+        if (email.contains("@") && email.contains(("."))) {return true;}
+        return false;
+    }
+
+    boolean validPassword(String password) {
+        if (password == null || password.length() < 12) {
+            return false;
+        }
+
+        boolean hasSpecial = password.matches(".*[!@\\$\\*].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+
+        return hasSpecial && hasDigit;
+    }
 }
