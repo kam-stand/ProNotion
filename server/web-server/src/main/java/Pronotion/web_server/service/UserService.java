@@ -20,8 +20,8 @@ public class UserService {
      *      d. Hash the password
      */
 
-    void addUser(String name, String email, String password) {
-        if (validEmail(email) && validPassword(password) && checkUserExists(email)) {
+    public void addUser(String name, String email, String password) {
+        if (validEmail(email) && validPassword(password) && !(checkUserExists(email))) {
             userDao.createUser(new User(name, email, password));
         }
     }
