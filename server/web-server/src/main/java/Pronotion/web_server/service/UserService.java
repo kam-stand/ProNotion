@@ -4,6 +4,8 @@ import Pronotion.web_server.dao.UserDaoImpl;
 import Pronotion.web_server.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
 
@@ -31,8 +33,7 @@ public class UserService {
     }
 
     boolean validEmail(String email) {
-        if (email.contains("@") && email.contains(("."))) {return true;}
-        return false;
+        return email.contains("@") && email.contains(("."));
     }
 
     boolean validPassword(String password) {
@@ -47,7 +48,22 @@ public class UserService {
         return hasSpecial && hasDigit && hasUppercase;
     }
 
-    void deleteUser(String email) {
+    /**
+     *
+     * Check if the user with long id exists? if so then update the user with given info
+     */
+    public void updateUser(long id, String name, String email, String password) {
+        Optional<User> user = userDao.findUser(id);
+        if (user.isPresent()) {
+            userDao.updateUser(id, new User(name, email, password));
+        }
+    }
 
+    public void deleteUser(long id) {
+        userDao.deleteUser(id);
+    }
+
+    public User getUser(long id) {
+        return userDao.findUser(id).get();
     }
 }

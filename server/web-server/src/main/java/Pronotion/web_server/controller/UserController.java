@@ -16,15 +16,30 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/api/register")
+    @PostMapping("/api/user/register")
     public ResponseEntity<?> register(@RequestBody UserDto userDto) {
         userService.addUser(userDto.getName(), userDto.getEmail(), userDto.getPassword());
         return ResponseEntity.ok("User registered successfully");
     }
 
-    @GetMapping("/api")
-    public ResponseEntity<?> getUsers() {
-        return ResponseEntity.ok("get users");
+    @GetMapping("/api/user/{id}")
+    public ResponseEntity<?> getUser(@PathVariable Long id) {
+        if (userService.getUser(id) == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(userService.getUser(id));
+    }
+
+    @PostMapping("/api/user/{id}")
+    public ResponseEntity<?> updateUser(@PathVariable Long id, @RequestBody UserDto userDto) {
+        userService.updateUser(id, userDto.getName(), userDto.getEmail(), userDto.getPassword());
+        return ResponseEntity.ok("User updated successfully");
+    }
+
+    @GetMapping("/api/user/delete/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User deleted successfully");
     }
 
 }
