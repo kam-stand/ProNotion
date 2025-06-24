@@ -1,0 +1,34 @@
+.WelcomePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f5f6fa;
+}
+
+.welcome-header {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.welcome-header h1 {
+  margin-bottom: 0.5rem;
+  color: #2d3436;
+  font-size: 2.5rem;
+}
+
+.subtitle {
+  display: block;
+  margin-bottom: 1rem;
+  color: #636e72;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.welcome-header p {
+  color: #636e72;
+  font-size: 1rem;
+}

@@ -25,6 +25,10 @@ public class UserService {
     public void addUser(String name, String email, String password) {
         if (validEmail(email) && validPassword(password) && !(checkUserExists(email))) {
             userDao.createUser(new User(name, email, password));
+            System.out.println("User created");
+        }
+        else {
+            System.out.println("Invalid email or password");
         }
     }
 
