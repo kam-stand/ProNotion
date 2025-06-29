@@ -14,18 +14,6 @@ package com.spring.controller;
 // import org.springframework.web.bind.annotation.RequestParam;
 // import org.springframework.web.bind.annotation.RestController;
 
-// @RestController
-// @RequestMapping("/email")
-// public class EmailController {
-
-//     @Autowired
-//     EmailService emailService;
-
-//     @GetMapping
-//     public CompletableFuture<List<Email>> fetchEmail(@RequestParam int start, @RequestParam int end) {
-//         return emailService.getEmails("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!", start, end);
-//     }
-// }
 
 
 import org.slf4j.Logger;
@@ -58,7 +46,7 @@ public class EmailController {
     public CompletableFuture<List<Email>> fetchEmail(@RequestParam int start, @RequestParam int end) {
         logger.debug("Fetching emails from start: {} to end: {}", start, end);
 
-        CompletableFuture<List<Email>> result = emailService.getEmails("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!", start, end);
+        CompletableFuture<List<Email>> result = emailService.getEmails("kamrul.@stonybrook.edu", "@123111402!", start, end);
         logger.debug("Async processing started");
         return result;
     }
@@ -66,7 +54,7 @@ public class EmailController {
 
     @PostMapping
     public CompletableFuture<Boolean> sendEmail( @RequestBody EmailSend emailSend){
-        CompletableFuture<Boolean> result = emailService.sendEmail("kamrul.hassan@stonybrook.edu", "Fahim84590@123111402!", emailSend);
+        CompletableFuture<Boolean> result = emailService.sendEmail(".hassan@.edu", "@123111402!", emailSend);
         return result;
     }
 }
