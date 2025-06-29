@@ -14,6 +14,7 @@ export default function WelcomePage() {
           workflow within Notion.
         </p>
         <button onClick={() => navigate("/home")}>Go to Home</button>
+        <button onClick={() => navigate("/auth")}>Login / Sign Up</button>
       </div>
     </div>
   );

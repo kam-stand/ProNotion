@@ -40,3 +40,13 @@
 .read-the-docs {
   color: #888;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #fff; /* Use #f5f6fa if you want the light gray */
+}
+#root {
+  min-height: 100vh;
+}
