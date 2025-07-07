@@ -1,67 +1,79 @@
-.welcome{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.welcome-sub{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    /* border: solid white; */
-    padding: 12px;
-    margin: 12px;
-}
-
-.welcome-info{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    /* border: solid blueviolet; */
-    padding: 12px;
-    margin: 12px;
-}
-
-
-/* .card{
-    display: flex;
-    justify-content: space-evenly;
-    border: dotted white;
-}
-
-.card div{
-    margin: 12px;
-    padding: 12px;
-    border: solid white;
-}
-*/
-
-.card {
+/* MAIN PAGE CONTAINER */
+.welcome {
   display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 16px;
-  padding: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.card-item {
+/* INNER CONTAINER */
+.welcome-sub {
+  max-width: 1200px; /* keep content centered and limited */
+  width: 100%;
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
+  padding: 10px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* INDIVIDUAL SECTION (testimonials, tasks, pricing) */
+.welcome-info {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  width: 100%;
+}
+
+/* CARD GRID */
+.card {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
   text-align: center;
-  max-width: 200px;
-  padding: 12px;
-  border: 1px solid #ccc;
+}
+
+/* INDIVIDUAL CARD */
+.card-item {
+  background-color: #f5f5f5;
   border-radius: 12px;
+  padding: 10px;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 .card-item:hover {
-  transform: scale(1.02);
+  transform: translateY(-5px);
+  font-weight: bold;
 }
 
-.card-item:hover p {
-  font-weight: bold;
+/* PRICING FEATURES */
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+}
+
+/* EMOJI ICON */
+.emoji {
+  font-size: 1.2rem;
 }
