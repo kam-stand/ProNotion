@@ -9,8 +9,21 @@ public class Task {
     String description;
     long user_id;
     private Timestamp due_date;
+    public enum Status {Incomplete, Completed, InProgress}
+    public Status status;
 
+    public Task() {
 
+    }
+
+    public Task(long id, String name, String description, long user_id, Timestamp due_date) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.user_id = user_id;
+        this.due_date = due_date;
+        this.status = Status.Incomplete;
+    }
     public long getId() {
         return id;
     }
@@ -49,5 +62,12 @@ public class Task {
 
     public void setDue_date(Timestamp due_date) {
         this.due_date = due_date;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

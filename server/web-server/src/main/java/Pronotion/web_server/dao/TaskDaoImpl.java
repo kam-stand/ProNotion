@@ -29,6 +29,7 @@ public class TaskDaoImpl implements TaskDao {
                         t.setDescription(rs.getString("description"));
                         t.setUser_id(rs.getLong("user_id"));
                         t.setDue_date(rs.getTimestamp("due_date"));
+                        t.setStatus(rs.getString("status"));
                         return t;
                     }
             );
@@ -41,10 +42,10 @@ public class TaskDaoImpl implements TaskDao {
 
     @Override
     public void insertTask(Task task) {
-        String sql = "INSERT into Tasks (name, description, user_id, due_date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT into Tasks (name, description, user_id, due_date, status) VALUES (?, ?, ?, ?)";
         jdbcTemplate.update(
                 sql,
-                task.getName(), task.getDescription(), task.getUser_id(), task.getDue_date()
+                task.getName(), task.getDescription(), task.getUser_id(), task.getDue_date(), task.getStatus()
         );
     }
 

@@ -13,5 +13,6 @@ CREATE TABLE IF NOT EXISTS Tasks (
     description VARCHAR(255),
     user_id INT,
     due_date TIMESTAMP,
+    status VARCHAR(255)
     FOREIGN KEY (user_id) REFERENCES Users(id)
     );

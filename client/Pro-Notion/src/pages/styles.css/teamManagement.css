@@ -1,0 +1,221 @@
+.team-management {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.add-member-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.add-member-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.add-member-form button {
+  padding: 8px 14px;
+  font-size: 16px;
+  border: none;
+  background-color: #5e9eff;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.add-member-form button:hover {
+  background-color: #407ee7;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.member-card {
+  background-color: #f3f5f7;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.member-header button {
+  padding: 4px 8px;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.member-header button:hover {
+  background-color: #e0a800;
+}
+
+.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.task-list li {
+  background-color: white;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.no-tasks {
+  font-style: italic;
+  color: #999;
+}
+
+
+.create-team-form,
+.add-member-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.create-team-form input,
+.add-member-form input {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.create-team-form button,
+.add-member-form button {
+  padding: 8px 14px;
+  font-size: 16px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-team-form button:hover,
+.add-member-form button:hover {
+  background-color: #218838;
+}
+
+.team-name {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.no-members {
+  font-style: italic;
+  color: #999;
+}
+
+.create-team-form,
+.add-member-form,
+.team-selector {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.create-team-form input,
+.add-member-form input,
+.team-selector select {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.create-team-form button,
+.add-member-form button {
+  padding: 8px 14px;
+  font-size: 16px;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-team-form button:hover,
+.add-member-form button:hover {
+  background-color: #218838;
+}
+
+.team-name {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.no-members {
+  font-style: italic;
+  color: #999;
+}
+
+.member-card {
+  background-color: #f3f5f7;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+}
+
+.member-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.member-header button {
+  padding: 4px 8px;
+  background-color: #ffc107;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.member-header button:hover {
+  background-color: #e0a800;
+}
+
+.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.task-list li {
+  background-color: white;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.no-tasks {
+  font-style: italic;
+  color: #999;
+}

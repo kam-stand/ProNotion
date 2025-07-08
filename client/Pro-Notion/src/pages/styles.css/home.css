@@ -1,11 +1,11 @@
 /* Home container layout */
 .home-container {
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   font-family: Arial, sans-serif;
-  justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 /* Header styling */
@@ -14,15 +14,16 @@
   color: white;
   padding: 15px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center; /* Center horizontally */
   align-items: center;
   border-radius: 35px;
+  margin-top: 20px;
 }
 
-.header-icons span {
-  font-size: 24px;
-  margin-left: 20px;
-  cursor: pointer;
+/* Header icons centered inside the header */
+.header-icons {
+  display: flex;
+  gap: 20px;
 }
 
 /* Floating Sidebar */
@@ -51,15 +52,20 @@
 
 /* Main content area */
 .main-content {
-  margin-left: 100px;
-  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
   padding: 20px;
+  width: 100%;
 }
 
+/* Content box styling */
 .content-box {
   padding: 20px;
   background: #f9f9f9;
   border-radius: 12px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   font-size: 18px;
+  text-align: center;
 }
