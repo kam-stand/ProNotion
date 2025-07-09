@@ -9,7 +9,11 @@ public class Task {
     String description;
     long user_id;
     private Timestamp due_date;
-    public enum Status {Incomplete, Completed, InProgress}
+
+    public enum Status {
+        Incomplete, Completed, InProgress
+    }
+
     public Status status;
 
     public Task() {
@@ -24,6 +28,7 @@ public class Task {
         this.due_date = due_date;
         this.status = Status.Incomplete;
     }
+
     public long getId() {
         return id;
     }
@@ -67,7 +72,20 @@ public class Task {
     public Status getStatus() {
         return status;
     }
-    public void setStatus(Status status) {
-        this.status = status;
+
+    public void setStatus(String status) {
+        switch (status.toLowerCase()) {
+            case "incomplete":
+                this.status = Status.Incomplete;
+                break;
+            case "completed":
+                this.status = Status.Completed;
+                break;
+            case "inprogress":
+                this.status = Status.InProgress;
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid status: " + status);
+        }
     }
 }

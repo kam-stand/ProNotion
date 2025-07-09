@@ -89,7 +89,7 @@ export default function AuthPage() {
   />
   {errors.password && <small className="error">{errors.password}</small>}
 
-  <button type="submit">{auth === "login" ? "Log In" : "Sign Up"}</button>
+  <button type="submit">{auth === "login" ? "➜" : "➜"}</button>
 </form>
 
       </div>

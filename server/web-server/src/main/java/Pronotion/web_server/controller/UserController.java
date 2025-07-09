@@ -1,10 +1,8 @@
 package Pronotion.web_server.controller;
 
 import Pronotion.web_server.dto.UserDto;
-import Pronotion.web_server.model.User;
 import Pronotion.web_server.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

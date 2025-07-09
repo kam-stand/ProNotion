@@ -7,12 +7,13 @@ CREATE TABLE IF NOT EXISTS Users (
                        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+
 CREATE TABLE IF NOT EXISTS Tasks (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255),
-    description VARCHAR(255),
-    user_id INT,
-    due_date TIMESTAMP,
-    status VARCHAR(255)
-    FOREIGN KEY (user_id) REFERENCES Users(id)
-    );
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255),
+  description VARCHAR(255),
+  user_id INT,
+  due_date TIMESTAMP,
+  status VARCHAR(255),
+  FOREIGN KEY (user_id) REFERENCES Users(id)
+)
