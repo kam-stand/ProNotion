@@ -1,22 +1,18 @@
 package Pronotion.web_server.model;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Team {
 
     private long id;
     private String name;
-    private List<Long> user_ids;
 
     public Team() {
 
     }
 
-    public Team(long id, String name, List<Long> user_ids) {
+    public Team(long id, String name) {
         this.id = id;
         this.name = name;
-        this.user_ids = user_ids;
     }
 
     public long getId() {
@@ -35,11 +31,5 @@ public class Team {
         this.name = name;
     }
 
-    public List<Long> getUser_ids() {
-        return user_ids;
-    }
-
-    public void setUser_ids(List<Long> user_ids) {
-        this.user_ids = user_ids;
-    }
+   
 }

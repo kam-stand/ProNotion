@@ -15,8 +15,7 @@ public class Task {
 
     }
 
-    public Task(long id, String name, String description, long user_id, Timestamp due_date, String status) {
-        this.id = id;
+    public Task( String name, String description, long user_id, Timestamp due_date, String status) {
         this.name = name;
         this.description = description;
         this.user_id = user_id;

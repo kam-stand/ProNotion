@@ -1,7 +1,6 @@
 package Pronotion.web_server.dao;
 
 import Pronotion.web_server.model.Task;
-import Pronotion.web_server.model.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +12,7 @@ public interface TaskDao {
 
     public void insertTask(Task task);
 
-    public void updateTask(long id, Task task);
+    public boolean updateTask(long id, Task task);
 
     public void deleteTask(long id);
 

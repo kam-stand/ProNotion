@@ -5,7 +5,6 @@ import Pronotion.web_server.model.Task;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -18,8 +17,8 @@ public class TaskService {
         taskDao.insertTask(task);
 
     }
-    public void updateTask(long id, Task task) {
-        taskDao.updateTask(id, task);
+    public boolean updateTask(long id, Task task) {
+       return taskDao.updateTask(id, task);
     }
 
     public void deleteTask(long id) {

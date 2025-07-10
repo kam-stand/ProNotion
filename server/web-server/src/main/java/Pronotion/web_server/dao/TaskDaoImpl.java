@@ -1,7 +1,6 @@
 package Pronotion.web_server.dao;
 
 import Pronotion.web_server.model.Task;
-import Pronotion.web_server.model.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -56,17 +55,20 @@ public class TaskDaoImpl implements TaskDao {
     }
 
 
-    @Override
-    public void updateTask(long id, Task task) {
-        String sql = "UPDATE Tasks SET name = ?, description = ?, status = ? WHERE id = ?";
-        jdbcTemplate.update(
-                sql,
-                task.getName(),
-                task.getDescription(),
-                task.getStatus(),
-                id
-        );
-    }
+@Override
+public boolean updateTask(long id, Task task) {
+    String sql = "UPDATE Tasks SET name = ?, description = ?, user_id = ?, due_date = ?, status = ? WHERE id = ?";
+    int rowsAffected = jdbcTemplate.update(
+        sql,
+        task.getName(),
+        task.getDescription(),
+        task.getUser_id(),
+        task.getDue_date(),
+        task.getStatus(),
+        id
+    );
+    return rowsAffected > 0; // true if update succeeded, false if not
+}
 
 
     @Override
