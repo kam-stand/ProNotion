@@ -13,13 +13,11 @@ public interface TaskDao {
 
     public void insertTask(Task task);
 
-    public void updateTask(Task task);
+    public void updateTask(long id, Task task);
 
-    public void deleteTask(int id);
+    public void deleteTask(long id);
 
     public List<Task> getTasks(long userId);
-
-    public List<User> getUsersByTaskId(int id);
 
 
 

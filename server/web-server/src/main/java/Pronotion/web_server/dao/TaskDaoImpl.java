@@ -4,10 +4,12 @@ import Pronotion.web_server.model.Task;
 import Pronotion.web_server.model.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class TaskDaoImpl implements TaskDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -42,30 +44,57 @@ public class TaskDaoImpl implements TaskDao {
 
     @Override
     public void insertTask(Task task) {
-        String sql = "INSERT into Tasks (name, description, user_id, due_date, status) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Tasks (name, description, user_id, due_date, status) VALUES (?, ?, ?, ?, ?)";
         jdbcTemplate.update(
                 sql,
-                task.getName(), task.getDescription(), task.getUser_id(), task.getDue_date(), task.getStatus()
+                task.getName(),
+                task.getDescription(),
+                task.getUser_id(),
+                task.getDue_date(),
+                task.getStatus()
         );
     }
 
-    @Override
-    public void updateTask(Task task) {
-
-    }
 
     @Override
-    public void deleteTask(int id) {
-
+    public void updateTask(long id, Task task) {
+        String sql = "UPDATE Tasks SET name = ?, description = ?, status = ? WHERE id = ?";
+        jdbcTemplate.update(
+                sql,
+                task.getName(),
+                task.getDescription(),
+                task.getStatus(),
+                id
+        );
     }
+
+
+    @Override
+    public void deleteTask(long id) {
+        String sql = "DELETE FROM Tasks WHERE id = ?";
+        jdbcTemplate.update(sql, id);
+    }
+
 
     @Override
     public List<Task> getTasks(long userId) {
-        return List.of();
+        String sql = "SELECT * FROM Tasks WHERE user_id = ?";
+        return jdbcTemplate.query(
+                sql,
+                new Object[]{userId},
+                (rs, rowNum) -> {
+                    Task task = new Task();
+                    task.setId(rs.getLong("id"));
+                    task.setName(rs.getString("name"));
+                    task.setDescription(rs.getString("description"));
+                    task.setUser_id(rs.getLong("user_id"));
+                    task.setDue_date(rs.getTimestamp("due_date"));
+                    task.setStatus(rs.getString("status"));
+                    return task;
+                }
+        );
     }
 
-    @Override
-    public List<User> getUsersByTaskId(int id) {
-        return List.of();
-    }
+
+
 }
