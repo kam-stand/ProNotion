@@ -20,6 +20,13 @@ public class UserController {
         return ResponseEntity.ok("User registered successfully");
     }
 
+//    @PostMapping("/api/user/register")
+//    public ResponseEntity<?> loginUser(@RequestBody String email, String password) {
+//
+//    }
+//
+
+
     @GetMapping("/api/user/{id}")
     public ResponseEntity<?> getUser(@PathVariable Long id) {
         if (userService.getUser(id) == null) {
