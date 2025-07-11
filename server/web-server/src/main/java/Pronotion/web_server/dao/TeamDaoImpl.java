@@ -5,9 +5,11 @@ import Pronotion.web_server.model.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class TeamDaoImpl implements TeamDao {
 
     private final JdbcTemplate jdbcTemplate;
@@ -18,6 +20,7 @@ public class TeamDaoImpl implements TeamDao {
 
     // RowMapper for Team
     private final RowMapper<Team> teamRowMapper = (rs, rowNum) -> new Team(
+            rs.getLong("id"),
             rs.getString("name")
     );
 
