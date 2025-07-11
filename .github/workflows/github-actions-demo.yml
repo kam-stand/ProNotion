@@ -20,6 +20,13 @@ jobs:
         working-directory: server/web-server
         run: mvn test
 
+      - name: Set up MySQL
+        uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql database: 'test'
+          mysql user: 'pro_notion_user'
+          mysql password: 'Kamrul14!'
+
       - name: Archive test results
         uses: actions/upload-artifact@v4
         with:
