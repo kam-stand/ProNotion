@@ -67,5 +67,23 @@ public class UserDaoImpl implements UserDao {
         return count > 0;
     }
 
+    public Optional<User> findUserByEmail(String email) {
+        String query = "SELECT * FROM Users WHERE email = ?";
+        try {
+            User user = jdbcTemplate.queryForObject(
+                    query,
+                    new Object[]{email},
+                    (rs, rowNum) -> new User(
+                            rs.getString("name"),
+                            rs.getString("email"),
+                            rs.getString("password")
+                    )
+            );
+            return Optional.of(user);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
+    }
+
 
 }

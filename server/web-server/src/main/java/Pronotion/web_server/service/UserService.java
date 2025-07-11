@@ -70,4 +70,16 @@ public class UserService {
     public User getUser(long id) {
         return userDao.findUser(id).get();
     }
+
+    public boolean verifyUser(String email, String password) {
+        if (!(userDao.existsUser(email))) {
+            return false;
+        }
+        Optional<User> user = userDao.findUserByEmail(email);
+        if (user.isPresent()) {
+            return user.get().getPassword().equals(password);
+        }
+        return false;
+
+    }
 }

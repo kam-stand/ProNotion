@@ -59,4 +59,7 @@ public class TaskDto {
     {
         this.status = status;
     }
+
+    public static class TeamDto {
+    }
 }

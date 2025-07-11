@@ -10,8 +10,7 @@ public class Team {
 
     }
 
-    public Team(long id, String name) {
-        this.id = id;
+    public Team( String name) {
         this.name = name;
     }
 
