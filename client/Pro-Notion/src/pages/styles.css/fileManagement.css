@@ -1,0 +1,97 @@
+.file-management-container {
+  background: #f5f6fa;
+  min-height: 400px;
+  max-width: 500px;
+  margin: 4rem auto 0 auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  position: relative;
+}
+
+.folders-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  max-height: 180px; /* 2 rows of 3 items = 6 items */
+  overflow-y: auto;
+  margin-bottom: 2rem;
+  padding-right: 0.5rem; /* for scrollbar */
+}
+
+.folder-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.5rem;
+  font-size: 1.1rem;
+  color: #0984e3;
+  transition: box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.folder-item:hover {
+  box-shadow: 0 4px 16px rgba(9,132,227,0.12);
+}
+
+.folder-item span[role="img"] {
+  font-size: 2rem;
+  margin-bottom: 0.3rem;
+}
+
+.folder-name {
+  text-align: center;
+  color: #2d3436;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.upload-section {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  bottom: 1.5rem;
+}
+
+.upload-btn {
+  background: #fff;
+  border: 2px solid #0984e3;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #0984e3;
+  cursor: pointer;
+  transition: background 0.2s, border 0.2s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.upload-btn:hover {
+  background: #0984e3;
+  color: #fff;
+  border: 2px solid #74b9ff;
+}
+
+/* Add to fileManagement.css */
+.file-management-header {
+  width: 100%;
+  text-align: center;
+  color: #2d3436;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
