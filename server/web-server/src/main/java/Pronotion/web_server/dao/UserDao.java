@@ -16,4 +16,6 @@ public interface UserDao {
 
     boolean existsUser(String email);
 
+    Optional<User> findUserByEmail(String email);
+
 }

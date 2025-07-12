@@ -82,4 +82,8 @@ public class UserService {
         return false;
 
     }
+
+    public Optional<User> getUserByEmail(String email) {
+        return userDao.findUserByEmail(email);
+    }
 }

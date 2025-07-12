@@ -46,6 +46,12 @@
     <artifactId>aws-java-sdk-s3</artifactId>
     <version>1.12.787</version>
 </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version> <!-- or latest -->
+        </dependency>
+
     </dependencies>
 
     <build>

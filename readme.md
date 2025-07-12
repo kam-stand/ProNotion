@@ -110,7 +110,6 @@ This project leverages a modern full-stack technology suite:
 [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 

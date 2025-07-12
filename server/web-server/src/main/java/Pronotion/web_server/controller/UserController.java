@@ -18,7 +18,7 @@ public class UserController {
     @PostMapping("/api/user/register")
     public ResponseEntity<?> register(@RequestBody UserDto userDto) {
         userService.addUser(userDto.getName(), userDto.getEmail(), userDto.getPassword());
-        return ResponseEntity.ok("User registered successfully");
+        return ResponseEntity.ok(userDto.getEmail());
     }
 
 //    @PostMapping("/api/user/register")
@@ -30,7 +30,7 @@ public class UserController {
 public ResponseEntity<?> loginUser(@RequestBody UserDto userDto) {
     boolean valid = userService.verifyUser(userDto.getEmail(), userDto.getPassword());
     if (valid) {
-        return ResponseEntity.ok("Login successful");
+        return ResponseEntity.ok(userDto.getEmail());
     } else {
         return ResponseEntity.status(401).body("Invalid email or password");
     }
