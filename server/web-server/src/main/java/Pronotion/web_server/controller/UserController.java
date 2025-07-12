@@ -1,6 +1,7 @@
 package Pronotion.web_server.controller;
 
 import Pronotion.web_server.dto.UserDto;
+import Pronotion.web_server.model.User;
 import Pronotion.web_server.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +26,15 @@ public class UserController {
 //
 //    }
 //
+@PostMapping("/api/user/login")
+public ResponseEntity<?> loginUser(@RequestBody UserDto userDto) {
+    boolean valid = userService.verifyUser(userDto.getEmail(), userDto.getPassword());
+    if (valid) {
+        return ResponseEntity.ok("Login successful");
+    } else {
+        return ResponseEntity.status(401).body("Invalid email or password");
+    }
+}
 
 
     @GetMapping("/api/user/{id}")

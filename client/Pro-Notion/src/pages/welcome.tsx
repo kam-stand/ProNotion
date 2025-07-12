@@ -12,17 +12,18 @@ const testimonials = [
   {
     image: test1,
     title: "OMG!",
-    message: "ProNotion has been able to greatly reduce my anxiety in project management"
+    message:
+      "ProNotion has been able to greatly reduce my anxiety in project management",
   },
   {
     image: test2,
     title: "Amazing!",
-    message: "This tool is my daily go-to for staying on top of tasks"
+    message: "This tool is my daily go-to for staying on top of tasks",
   },
   {
     image: test3,
     title: "Love it!",
-    message: "My team has never been more organized"
+    message: "My team has never been more organized",
   },
 ];
 
@@ -30,47 +31,36 @@ const tasks = [
   {
     image: task1,
     title: "Communicate",
-    message: "Seamlessly interacte and coordinate with team members"
+    message: "Seamlessly interacte and coordinate with team members",
   },
   {
     image: task2,
     title: "Project Management",
-    message: "Manage large workloads with ease"
+    message: "Manage large workloads with ease",
   },
   {
     image: task3,
     title: "Tasks",
-    message: "Assign and manage your tasks with a simple to use UI"
+    message: "Assign and manage your tasks with a simple to use UI",
   },
-]
+];
 
 const pricingOptions = [
   {
     tier: "Free",
     price: "$0/mo",
-    features: [
-      "Unlimited task creation",
-      "No reminders",
-      "No teams"
-    ]
+    features: ["Unlimited task creation", "No reminders", "No teams"],
   },
   {
     tier: "Basic",
     price: "$5/mo",
-    features: [
-      "Task creation",
-      "Reminders",
-      "Up to 5 teams"
-    ]
+    features: ["Task creation", "Reminders", "Up to 5 teams"],
   },
   {
     tier: "Premium",
     price: "$15/mo",
-    features: [
-      "Everything in Basic",
-      "Email integration"
-    ]
-  }
+    features: ["Everything in Basic", "Email integration"],
+  },
 ];
 function PricingCardGrid() {
   return (
@@ -79,7 +69,11 @@ function PricingCardGrid() {
         <div key={index} className="card-item">
           <h3>{option.tier}</h3>
           <hr style={{ width: "60%", borderTop: "2px solid #ccc" }} />
-          <p style={{ fontWeight: "bold", fontSize: "1.2rem", margin: "10px 0" }}>{option.price}</p>
+          <p
+            style={{ fontWeight: "bold", fontSize: "1.2rem", margin: "10px 0" }}
+          >
+            {option.price}
+          </p>
           <div className="feature-list">
             {option.features.map((feature, i) => {
               const isNegative = feature.toLowerCase().includes("no ");
@@ -97,15 +91,16 @@ function PricingCardGrid() {
   );
 }
 
-
-
-
 function TaskGrid() {
   return (
     <div className="card">
-    {tasks.map((item, index) => (
+      {tasks.map((item, index) => (
         <div key={index} className="card-item">
-          <img src={item.image} alt={`tasks-${index}`} style={{ width: "100px", height: "100px", borderRadius: "8px" }} />
+          <img
+            src={item.image}
+            alt={`tasks-${index}`}
+            style={{ width: "100px", height: "100px", borderRadius: "8px" }}
+          />
           <h3>{item.title}</h3>
           <p>{item.message}</p>
         </div>
@@ -119,7 +114,11 @@ function CardGrid() {
     <div className="card">
       {testimonials.map((item, index) => (
         <div key={index} className="card-item">
-          <img src={item.image} alt={`testimonial-${index}`} style={{ width: "110px", height: "110px", borderRadius: "8px" }} />
+          <img
+            src={item.image}
+            alt={`testimonial-${index}`}
+            style={{ width: "110px", height: "110px", borderRadius: "8px" }}
+          />
           <h3>{item.title}</h3>
           <p>{item.message}</p>
         </div>
@@ -131,17 +130,23 @@ export default function WelcomePage() {
   return (
     <div className="welcome">
       <div className="welcome-sub">
+        <button
+          className="welcome-button"
+          onClick={() => (window.location.href = "/auth")}
+        >
+          Get Started
+        </button>
         <div className="welcome-info">
           <h1>Welcome to ProNotion!</h1>
-          {<CardGrid/>}
+          {<CardGrid />}
         </div>
         <div className="welcome-info">
-            <h1>Manage tasks on the fly</h1>
-            {<TaskGrid/>}
+          <h1>Manage tasks on the fly</h1>
+          {<TaskGrid />}
         </div>
         <div className="welcome-info">
-            <h1>Affordable Pricing</h1>
-            {<PricingCardGrid/>}
+          <h1>Affordable Pricing</h1>
+          {<PricingCardGrid />}
         </div>
       </div>
     </div>
