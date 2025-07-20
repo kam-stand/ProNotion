@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      MYSQL_ROOT_PASSWORD: Kamrul14!
+      MYSQL_DATABASE: pronotion
+      MYSQL_USER: pro_notion_user
+      MYSQL_PASSWORD: Kamrul14!
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - springboot-net
+
+  app:
+    build: .
+    container_name: springboot
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/pronotion
+      SPRING_DATASOURCE_USERNAME: pro_notion_user
+      SPRING_DATASOURCE_PASSWORD: Kamrul14!
+    networks:
+      - springboot-net
+
+networks:
+  springboot-net:
