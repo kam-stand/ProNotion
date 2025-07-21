@@ -161,33 +161,33 @@ Follow these instructions to set up the project locally.
 # Database Configuration
 
 > spring.datasource.url=jdbc:mysql://db:3306/YOUR_DATABASE_NAME
-> 
+>
 > spring.datasource.username=YOUR_DATABASE_USERNAME
-> 
+>
 > spring.datasource.password=YOUR_DATABASE_PASSWORD
-> 
+>
 > spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-> 
+>
 > spring.jpa.hibernate.ddl-auto=update
-> 
+>
 > spring.jpa.show-sql=true
 
 # Google OAuth2 Configuration
 
 > spring.security.oauth2.client.registration.google.client-id=YOUR_GOOGLE_CLIENT_ID
-> 
+>
 > spring.security.oauth2.client.registration.google.client-secret=YOUR_GOOGLE_CLIENT_SECRET
-> 
+>
 > spring.security.oauth2.client.registration.google.scope=email,profile
 
 # AWS S3 Configuration
 
 > aws.s3.bucket.name=YOUR_S3_BUCKET_NAME
-> 
+>
 > aws.access.key=YOUR_AWS_ACCESS_KEY
-> 
+>
 > aws.secret.key=YOUR_AWS_SECRET_KEY
-> 
+>
 > aws.s3.region=YOUR_AWS_REGION
 
 # Application Configuration
@@ -229,37 +229,30 @@ ProNotion comes with Docker configuration for easy deployment and consistent env
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
 
-#### Option 1: Run with Docker Compose (Recommended)
+1. **Prepare your configuration**
 
-1. **Configure application properties**
+- Create or update the file at `server/my-springboot-project/src/main/resources/application.properties` with your environment-specific values:
 
-   - Create or update `server/my-springboot-project/src/main/resources/application.properties` with your credentials:
+> **Tip:** Never commit sensitive credentials to version control. Use environment variables or Docker secrets for production.
 
-   ```properties
-   # Database Configuration
-   spring.datasource.url=jdbc:mysql://db:3306/YOUR_DATABASE_NAME
-   spring.datasource.username=YOUR_DATABASE_USERNAME
-   spring.datasource.password=YOUR_DATABASE_PASSWORD
-   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
+2. **Start the application stack**
 
-   # Google OAuth2 Configuration
-   spring.security.oauth2.client.registration.google.client-id=YOUR_GOOGLE_CLIENT_ID
-   spring.security.oauth2.client.registration.google.client-secret=YOUR_GOOGLE_CLIENT_SECRET
-   spring.security.oauth2.client.registration.google.scope=email,profile
+- From the project root, run:
 
-   # AWS S3 Configuration
-   aws.s3.bucket.name=YOUR_S3_BUCKET_NAME
-   aws.access.key=YOUR_AWS_ACCESS_KEY
-   aws.secret.key=YOUR_AWS_SECRET_KEY
-   aws.s3.region=YOUR_AWS_REGION
+```sh
+docker-compose up --build
+```
 
-   # Application Configuration
-   server.port=8080
-   ```
+This will build and start all required services (backend, frontend, database, etc.) as defined in your `docker-compose.yml`.
 
----
+3. **Access the application**
+
+- Once all containers are running, open [http://localhost:8080](http://localhost:8080) (or the port you configured) in your browser.
+
+**Troubleshooting:**  
+If you encounter issues, check the logs with `docker-compose logs` and verify your configuration values.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 **Note:**
 
@@ -295,9 +288,9 @@ _For more examples and advanced usage, please refer to the [Documentation](https
 ## Roadmap
 
 - [x] Add Changelog 📝
-- [ ] Email Integration 📧
-- [ ] File Uploads to S3 & GCP ☁️📤
-- [ ] Elastic Search Integration 🔍
+- [x] Email Integration 📧
+- [x] File Uploads to S3 & GCP ☁️📤
+- [] Elastic Search Integration 🔍
 
 See the [open issues](https://github.com/kam-stand/ProNotion/issues) for a full list of proposed features (and known issues).
 
