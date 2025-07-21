@@ -1,0 +1,94 @@
+package Pronotion.web_server.service;
+
+import Pronotion.web_server.dao.UserDaoImpl;
+import Pronotion.web_server.model.User;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UserService {
+
+    private final UserDaoImpl userDao;
+    public UserService(UserDaoImpl userDao) {
+        this.userDao = userDao;
+    }
+
+    /**
+     *  1. Use DTO verify the conditions for a valid user Creation:
+     *      a. valid email --> contains '@' and a '.'
+     *      b. valid password --> at least 12 chars long, contains one special character, at least one Uppercase letter, at least one number
+     *      c. Verify email is Unique --> email not already in database
+     *      d. Hash the password
+     */
+
+    public void addUser(String name, String email, String password) {
+        if (validEmail(email) && validPassword(password) && !(checkUserExists(email))) {
+            userDao.createUser(new User(name, email, password));
+            System.out.println("User created");
+        }
+        else {
+            System.out.println("Invalid email or password");
+        }
+    }
+
+    boolean checkUserExists(String email) {
+        return userDao.existsUser(email);
+    }
+
+    boolean validEmail(String email) {
+        return email.contains("@") && email.contains(("."));
+    }
+
+    boolean validPassword(String password) {
+        if (password == null || password.length() < 12) {
+            return false;
+        }
+
+        boolean hasSpecial = password.matches(".*[!@\\$\\*].*");
+        boolean hasDigit = password.matches(".*\\d.*");
+        boolean hasUppercase = password.matches(".*[A-Z].*");
+
+        return hasSpecial && hasDigit && hasUppercase;
+    }
+
+    /**
+     *
+     * Check if the user with long id exists? if so then update the user with given info
+     */
+    public void updateUser(long id, String name, String email, String password) {
+        Optional<User> user = userDao.findUser(id);
+        if (user.isPresent()) {
+            userDao.updateUser(id, new User(name, email, password));
+        }
+    }
+
+    public void deleteUser(long id) {
+        userDao.deleteUser(id);
+    }
+
+    public User getUser(long id) {
+        return userDao.findUser(id).get();
+    }
+
+    public boolean verifyUser(String email, String password) {
+        if (!(userDao.existsUser(email))) {
+            return false;
+        }
+        Optional<User> user = userDao.findUserByEmail(email);
+        if (user.isPresent()) {
+            return user.get().getPassword().equals(password);
+        }
+        return false;
+
+    }
+
+    public Optional<User> getUserByEmail(String email) {
+        return userDao.findUserByEmail(email);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+}
