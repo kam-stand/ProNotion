@@ -161,23 +161,33 @@ Follow these instructions to set up the project locally.
 # Database Configuration
 
 > spring.datasource.url=jdbc:mysql://db:3306/YOUR_DATABASE_NAME
+> 
 > spring.datasource.username=YOUR_DATABASE_USERNAME
+> 
 > spring.datasource.password=YOUR_DATABASE_PASSWORD
+> 
 > spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+> 
 > spring.jpa.hibernate.ddl-auto=update
+> 
 > spring.jpa.show-sql=true
 
 # Google OAuth2 Configuration
 
 > spring.security.oauth2.client.registration.google.client-id=YOUR_GOOGLE_CLIENT_ID
+> 
 > spring.security.oauth2.client.registration.google.client-secret=YOUR_GOOGLE_CLIENT_SECRET
+> 
 > spring.security.oauth2.client.registration.google.scope=email,profile
 
 # AWS S3 Configuration
 
 > aws.s3.bucket.name=YOUR_S3_BUCKET_NAME
+> 
 > aws.access.key=YOUR_AWS_ACCESS_KEY
+> 
 > aws.secret.key=YOUR_AWS_SECRET_KEY
+> 
 > aws.s3.region=YOUR_AWS_REGION
 
 # Application Configuration
