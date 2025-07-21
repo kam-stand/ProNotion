@@ -4,6 +4,7 @@ import Pronotion.web_server.dao.UserDaoImpl;
 import Pronotion.web_server.model.User;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -85,5 +86,9 @@ public class UserService {
 
     public Optional<User> getUserByEmail(String email) {
         return userDao.findUserByEmail(email);
+    }
+
+    public List<User> getAllUsers() {
+        return userDao.findAll();
     }
 }

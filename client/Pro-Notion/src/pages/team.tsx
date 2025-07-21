@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./styles.css/teamManagement.css";
 
-interface Member {
+interface User {
+  id: number;
   name: string;
-  tasks: string[];
 }
 
 interface Team {
+  id: number;
   name: string;
-  members: Member[];
+  members: User[];
 }
 
 const TeamManagement: React.FC = () => {
@@ -18,65 +20,91 @@ const TeamManagement: React.FC = () => {
 
   const [newMemberName, setNewMemberName] = useState("");
 
-  const handleCreateTeam = () => {
-    const name = newTeamName.trim();
-    if (!name) return;
+  // Fetch all teams on mount
+  useEffect(() => {
+    fetchTeams();
+  }, []);
 
-    setTeams((prev) => [...prev, { name, members: [] }]);
-    setNewTeamName("");
-    setSelectedTeamIndex(teams.length); // auto-select new team
+  // Fetch all teams
+  const fetchTeams = async () => {
+    try {
+      const res = await axios.get<Team[]>("http://localhost:8080/api/teams");
+      setTeams(res.data);
+      if (res.data.length > 0 && selectedTeamIndex === null) {
+        setSelectedTeamIndex(0);
+      }
+    } catch (err) {
+      console.error("Failed to fetch teams", err);
+    }
   };
 
-  const handleAddMember = () => {
-  if (selectedTeamIndex === null) return;
-  const name = newMemberName.trim();
-  if (!name) return;
+  // Fetch users for selected team
+  const fetchUsersForTeam = async (teamId: number) => {
+    try {
+      const res = await axios.get<User[]>(`http://localhost:8080/api/teams/${teamId}/users`);
+      setTeams((prev) =>
+        prev.map((team) =>
+          team.id === teamId ? { ...team, members: res.data } : team
+        )
+      );
+    } catch (err) {
+      console.error("Failed to fetch users for team", err);
+    }
+  };
 
-  setTeams((prev) => {
-    return prev.map((team, idx) => {
-      if (idx === selectedTeamIndex) {
-        return {
-          ...team,
-          members: [...team.members, { name, tasks: [] }]
-        };
-      }
-      return team;
-    });
-  });
+  // When team selection changes, fetch its users
+  useEffect(() => {
+    if (selectedTeamIndex === null) return;
+    const team = teams[selectedTeamIndex];
+    if (team && !team.members) {
+      fetchUsersForTeam(team.id);
+    }
+  }, [selectedTeamIndex, teams]);
 
-  setNewMemberName("");
-};
+  // Create a new team
+  const handleCreateTeam = async () => {
+    const name = newTeamName.trim();
+    if (!name) return;
+    try {
+      await axios.post("http://localhost:8080/api/teams", { name });
+      setNewTeamName("");
+      await fetchTeams();
+      // Auto select last added team
+      setSelectedTeamIndex(teams.length);
+    } catch (err) {
+      console.error("Failed to create team", err);
+      alert("Could not create team.");
+    }
+  };
 
+  // Add user by name to selected team
+  const handleAddMember = async () => {
+    if (selectedTeamIndex === null) return;
+    const name = newMemberName.trim();
+    if (!name) return;
 
-const assignTask = (memberIndex: number) => {
-  if (selectedTeamIndex === null) return;
-
-  const task = prompt(`Assign a task to ${teams[selectedTeamIndex].members[memberIndex].name}:`);
-  if (!task) return;
-
-  setTeams((prev) => {
-    return prev.map((team, idx) => {
-      if (idx !== selectedTeamIndex) return team;
-
-      // Create new members array with updated member's tasks
-      const updatedMembers = team.members.map((member, mIdx) => {
-        if (mIdx !== memberIndex) return member;
-
-        // Return a new member object with updated tasks array
-        return {
-          ...member,
-          tasks: [...member.tasks, task],
-        };
+    try {
+      // First get user ID by name (assumed API)
+      const userRes = await axios.get<User[]>(`http://localhost:8080/api/users/by-name`, {
+        params: { name }
       });
+      const user = userRes.data[0]; // Assuming the first match
 
-      // Return new team object with updated members array
-      return {
-        ...team,
-        members: updatedMembers,
-      };
-    });
-  });
-};
+      if (!user) {
+        alert("User not found");
+        return;
+      }
+
+      const teamId = teams[selectedTeamIndex].id;
+      await axios.post(`http://localhost:8080/api/teams/${teamId}/users/${user.id}`);
+
+      setNewMemberName("");
+      await fetchUsersForTeam(teamId); // refresh members list
+    } catch (err) {
+      console.error("Failed to add user to team", err);
+      alert("Could not add user to team.");
+    }
+  };
 
   return (
     <div className="team-management">
@@ -101,9 +129,11 @@ const assignTask = (memberIndex: number) => {
             value={selectedTeamIndex ?? ""}
             onChange={(e) => setSelectedTeamIndex(Number(e.target.value))}
           >
-            <option value="" disabled>Select...</option>
+            <option value="" disabled>
+              Select...
+            </option>
             {teams.map((team, idx) => (
-              <option key={idx} value={idx}>
+              <option key={team.id} value={idx}>
                 {team.name}
               </option>
             ))}
@@ -114,7 +144,9 @@ const assignTask = (memberIndex: number) => {
       {/* Selected Team Info */}
       {selectedTeamIndex !== null && (
         <>
-          <h3>🚀 Team: <span className="team-name">{teams[selectedTeamIndex].name}</span></h3>
+          <h3>
+            🚀 Team: <span className="team-name">{teams[selectedTeamIndex].name}</span>
+          </h3>
 
           {/* Add member */}
           <div className="add-member-form">
@@ -129,23 +161,14 @@ const assignTask = (memberIndex: number) => {
 
           {/* Member list */}
           <div className="team-list">
-            {teams[selectedTeamIndex].members.length === 0 ? (
+            {teams[selectedTeamIndex].members?.length === 0 ? (
               <p className="no-members">No members yet. Add some!</p>
             ) : (
-              teams[selectedTeamIndex].members.map((member, index) => (
-                <div key={index} className="member-card">
+              teams[selectedTeamIndex].members?.map((member) => (
+                <div key={member.id} className="member-card">
                   <div className="member-header">
                     <span>👤 {member.name}</span>
-                    <button onClick={() => assignTask(index)}>📝 Assign Task</button>
                   </div>
-
-                  <ul className="task-list">
-                    {member.tasks.length === 0 ? (
-                      <li className="no-tasks">No tasks assigned.</li>
-                    ) : (
-                      member.tasks.map((task, i) => <li key={i}>📌 {task}</li>)
-                    )}
-                  </ul>
                 </div>
               ))
             )}

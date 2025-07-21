@@ -2,6 +2,7 @@ package Pronotion.web_server.dao;
 
 import Pronotion.web_server.model.User;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface UserDao {
@@ -18,4 +19,5 @@ public interface UserDao {
 
     Optional<User> findUserByEmail(String email);
 
+    List<User> findAll();
 }

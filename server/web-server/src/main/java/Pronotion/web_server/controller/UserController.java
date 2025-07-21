@@ -6,6 +6,8 @@ import Pronotion.web_server.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 public class UserController {
 
@@ -55,6 +57,12 @@ public ResponseEntity<?> loginUser(@RequestBody UserDto userDto) {
     public ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("User deleted successfully");
+    }
+
+
+    @GetMapping("/api/users/by-name")
+    public ResponseEntity<List<User>> getUsersByName() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 
 }

@@ -18,7 +18,7 @@ export default function FileManagementPage() {
   const connectToGoogle = () => {
     if (!email) return alert("Email not found in localStorage");
     const state = encodeURIComponent("/files");
-    window.location.href = `http://localhost:8080/api/google/auth?email=${email}&state=${state}`;
+    window.location.href = `http://localhost:8080/api/auth/google`;
   };
 
   const fetchFolders = async () => {

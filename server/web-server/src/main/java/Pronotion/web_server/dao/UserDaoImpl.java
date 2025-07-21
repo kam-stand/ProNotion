@@ -3,8 +3,10 @@ package Pronotion.web_server.dao;
 import Pronotion.web_server.model.User;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -85,6 +87,19 @@ public class UserDaoImpl implements UserDao {
         }
     }
 
+    public List<User> findAll() {
+        String sql = "SELECT id, name, email FROM Users";
+
+        RowMapper<User> rowMapper = (rs, rowNum) -> {
+            User user = new User();
+            user.setId(rs.getLong("id"));
+            user.setName(rs.getString("name"));
+            user.setEmail(rs.getString("email"));
+            return user;
+        };
+
+        return jdbcTemplate.query(sql, rowMapper);
+    }
 
 
 }

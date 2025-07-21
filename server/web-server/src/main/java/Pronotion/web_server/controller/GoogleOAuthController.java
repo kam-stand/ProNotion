@@ -22,7 +22,6 @@ import java.nio.charset.StandardCharsets;
 @RestController
 public class GoogleOAuthController {
 
-
     @Value("${google.client.id}")
     private String clientId;
 
@@ -49,12 +48,14 @@ public class GoogleOAuthController {
         this.googleAuthTokenService = googleAuthTokenService;
     }
 
-    @GetMapping("/auth/google")
-    public ResponseEntity<?> googleLogin(@RequestParam String email, @RequestParam(required = false) String state) {
+    /**
+     * Step 1: Redirect user to Google OAuth Consent Screen
+     */
+    @GetMapping("api/auth/google")
+    public ResponseEntity<?> googleLogin() {
         try {
             String encodedScope = URLEncoder.encode(scope, StandardCharsets.UTF_8);
             String encodedRedirectUri = URLEncoder.encode(redirectUri, StandardCharsets.UTF_8);
-            String encodedState = URLEncoder.encode(state != null ? state : "/", StandardCharsets.UTF_8);
 
             String url = authUri
                     + "?response_type=code"
@@ -62,8 +63,7 @@ public class GoogleOAuthController {
                     + "&redirect_uri=" + encodedRedirectUri
                     + "&scope=" + encodedScope
                     + "&access_type=offline"
-                    + "&prompt=consent"
-                    + "&state=" + encodedState;
+                    + "&prompt=consent";
 
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(url));
@@ -74,10 +74,12 @@ public class GoogleOAuthController {
         }
     }
 
+    /**
+     * Step 2: Google redirects back with an authorization code
+     */
     @GetMapping("/oauth2callback")
     public void oauth2callback(
             @RequestParam("code") String code,
-            @RequestParam(value = "state", required = false) String state,
             HttpServletResponse response
     ) throws IOException {
         try {
@@ -93,14 +95,13 @@ public class GoogleOAuthController {
             form.add("grant_type", "authorization_code");
 
             HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(form, headers);
-
             ResponseEntity<String> tokenResponse = restTemplate.postForEntity(tokenUri, request, String.class);
-            JsonNode tokenJson = objectMapper.readTree(tokenResponse.getBody());
 
+            JsonNode tokenJson = objectMapper.readTree(tokenResponse.getBody());
             String accessToken = tokenJson.get("access_token").asText();
             String refreshToken = tokenJson.has("refresh_token") ? tokenJson.get("refresh_token").asText() : null;
 
-            // Get user info
+            // Get user info from Google
             HttpHeaders userInfoHeaders = new HttpHeaders();
             userInfoHeaders.setBearerAuth(accessToken);
             HttpEntity<Void> userInfoRequest = new HttpEntity<>(userInfoHeaders);
@@ -116,12 +117,11 @@ public class GoogleOAuthController {
             String email = userInfo.get("email").asText();
             String name = userInfo.get("name").asText();
 
-            // Save tokens
+            // Save tokens in database
             googleAuthTokenService.saveOrUpdate(email, name, accessToken, refreshToken);
 
-            // 🔁 Redirect back to frontend
-            String target = state != null ? state : "/";
-            response.sendRedirect("http://localhost:5173" + target);
+            // ✅ Redirect to home page in frontend
+            response.sendRedirect("http://localhost:5173/home");
 
         } catch (Exception e) {
             response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "OAuth failed: " + e.getMessage());
@@ -133,24 +133,15 @@ public class GoogleOAuthController {
         String accessToken = googleAuthTokenService.getAccessToken(email);
 
         String url = "https://www.googleapis.com/drive/v3/files?pageSize=20&fields=files(id,name,mimeType)";
-
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<String> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.GET,
-                    entity,
-                    String.class
-            );
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
             return ResponseEntity.ok(response.getBody());
         } catch (HttpClientErrorException ex) {
-            return ResponseEntity
-                    .status(ex.getStatusCode())
-                    .body("Error retrieving files: " + ex.getResponseBodyAsString());
+            return ResponseEntity.status(ex.getStatusCode()).body("Error retrieving files: " + ex.getResponseBodyAsString());
         }
     }
 
@@ -158,31 +149,19 @@ public class GoogleOAuthController {
     public ResponseEntity<?> googleFolders(@RequestParam String email) {
         String accessToken = googleAuthTokenService.getAccessToken(email);
 
-        // Query to fetch only folders
         String url = "https://www.googleapis.com/drive/v3/files"
                 + "?q=mimeType='application/vnd.google-apps.folder'"
                 + "&pageSize=20"
                 + "&fields=files(id,name,mimeType)";
-
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(accessToken);
         HttpEntity<Void> entity = new HttpEntity<>(headers);
 
-        RestTemplate restTemplate = new RestTemplate();
         try {
-            ResponseEntity<String> response = restTemplate.exchange(
-                    url,
-                    HttpMethod.GET,
-                    entity,
-                    String.class
-            );
+            ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, entity, String.class);
             return ResponseEntity.ok(response.getBody());
         } catch (HttpClientErrorException ex) {
-            return ResponseEntity
-                    .status(ex.getStatusCode())
-                    .body("Error retrieving folders: " + ex.getResponseBodyAsString());
+            return ResponseEntity.status(ex.getStatusCode()).body("Error retrieving folders: " + ex.getResponseBodyAsString());
         }
     }
-
-
 }

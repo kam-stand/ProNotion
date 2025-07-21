@@ -66,6 +66,8 @@ const AuthPage: React.FC = () => {
         );
         if (response.status === 200) {
           localStorage.setItem("email", email); // ✅ save email
+          localStorage.setItem("state", "home")
+
           navigate("/home"); // ✅ navigate to home
         }
       } else {

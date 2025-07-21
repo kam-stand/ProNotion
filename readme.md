@@ -102,12 +102,18 @@ Thanks to everyone who’s helping make ProNotion better every day!
 
 This project leverages a modern full-stack technology suite:
 
+### Built With
+
+This project leverages a modern full-stack technology suite:
+
 [![React][React.js]][React-url]
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring-boot&logoColor=white)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)](https://www.oracle.com/java/)
 [![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
 [![Google Cloud](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 [![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
+[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+[![Amazon S3](https://img.shields.io/badge/Amazon_S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)](https://aws.amazon.com/s3/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -152,6 +158,32 @@ Follow these instructions to set up the project locally.
    - Open `server/my-springboot-project/src/main/resources/application.properties`.
    - Set your database connection, OAuth, and AWS S3 credentials as required.
 
+# Database Configuration
+
+> spring.datasource.url=jdbc:mysql://db:3306/YOUR_DATABASE_NAME
+> spring.datasource.username=YOUR_DATABASE_USERNAME
+> spring.datasource.password=YOUR_DATABASE_PASSWORD
+> spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+> spring.jpa.hibernate.ddl-auto=update
+> spring.jpa.show-sql=true
+
+# Google OAuth2 Configuration
+
+> spring.security.oauth2.client.registration.google.client-id=YOUR_GOOGLE_CLIENT_ID
+> spring.security.oauth2.client.registration.google.client-secret=YOUR_GOOGLE_CLIENT_SECRET
+> spring.security.oauth2.client.registration.google.scope=email,profile
+
+# AWS S3 Configuration
+
+> aws.s3.bucket.name=YOUR_S3_BUCKET_NAME
+> aws.access.key=YOUR_AWS_ACCESS_KEY
+> aws.secret.key=YOUR_AWS_SECRET_KEY
+> aws.s3.region=YOUR_AWS_REGION
+
+# Application Configuration
+
+> server.port=8080
+
 5. **Install frontend dependencies**
 
    ```sh
@@ -176,6 +208,45 @@ Follow these instructions to set up the project locally.
    ```sh
    cd ../../client/pronotion
    npm start
+   ```
+
+### Using Docker
+
+ProNotion comes with Docker configuration for easy deployment and consistent environments across different systems.
+
+#### Prerequisites for Docker Setup
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+#### Option 1: Run with Docker Compose (Recommended)
+
+1. **Configure application properties**
+
+   - Create or update `server/my-springboot-project/src/main/resources/application.properties` with your credentials:
+
+   ```properties
+   # Database Configuration
+   spring.datasource.url=jdbc:mysql://db:3306/YOUR_DATABASE_NAME
+   spring.datasource.username=YOUR_DATABASE_USERNAME
+   spring.datasource.password=YOUR_DATABASE_PASSWORD
+   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+
+   # Google OAuth2 Configuration
+   spring.security.oauth2.client.registration.google.client-id=YOUR_GOOGLE_CLIENT_ID
+   spring.security.oauth2.client.registration.google.client-secret=YOUR_GOOGLE_CLIENT_SECRET
+   spring.security.oauth2.client.registration.google.scope=email,profile
+
+   # AWS S3 Configuration
+   aws.s3.bucket.name=YOUR_S3_BUCKET_NAME
+   aws.access.key=YOUR_AWS_ACCESS_KEY
+   aws.secret.key=YOUR_AWS_SECRET_KEY
+   aws.s3.region=YOUR_AWS_REGION
+
+   # Application Configuration
+   server.port=8080
    ```
 
 ---
